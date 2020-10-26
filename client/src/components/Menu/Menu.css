@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500;600&display=swap');
+
+
+
+.Menu {
+    background-color:#fff;
+    overflow: hidden;
+}
+.HomeIcon a{
+    font-family: 'Roboto Slab', serif;
+    color:#df4f37;
+    font-size: 30px;
+    text-decoration: none;
+}
+.MenuUl{
+    float:right;
+    margin: 0;
+}
+.MenuUl li{
+    float: left;
+    list-style-type: none;
+    padding: 10px 15px;
+}
+.MenuUl li a{
+    color: #df4f37;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+}

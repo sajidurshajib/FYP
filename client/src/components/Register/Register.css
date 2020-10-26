@@ -1,0 +1,46 @@
+.Register{
+    margin-top: 150px;
+}
+.registerLeft{
+    text-align: right;
+    padding-right: 80px;
+    padding-top: 110px;
+    position: relative;
+}
+
+.registerLeft h2 >a{
+    font-weight: 500;
+}
+
+.registerLeft a{
+    font-weight: 700;
+}
+
+.registerLeft::after{
+    position: absolute;
+    content: "";
+    height: 200px;
+    width: 5px;
+    right:25px;
+    top:65px;
+    background-color: #df4f37;
+    border-radius: 5px;
+}
+
+input:focus,
+textarea:focus,
+button:focus{
+    border-color: none !important;
+    box-shadow: none !important;
+    outline: 0 none !important;
+}
+
+.registerRight button{
+    background-color: #df4f37;
+    border: none;
+    padding: 5px 25px 5px 25px;
+}
+
+.registerRight button:hover{
+    background-color: orangered;
+}

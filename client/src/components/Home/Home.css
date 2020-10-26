@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500;600&display=swap');
+
+.homeTop{
+    background-image: url('../../assets/img/db_header.jpg');
+    background-position: center;
+    background-size: cover;
+    padding :60px 0;
+    color:#fff;
+    text-align: center;
+}
+
+.homeTop h2{
+    font-family: 'Roboto Slab', serif;
+    font-size: 35px;
+}
+
+.homeTop p{
+    font-size: 20px;
+}
+
+form{
+    text-align: left;
+}
+
+
+input:focus,
+textarea:focus,
+button:focus{
+    border-color: none !important;
+    box-shadow: none !important;
+    outline: 0 none !important;
+}
+
+.searchForm{
+    position: relative;
+}
+.searchCheckbox{
+    overflow: hidden;
+}
+.searchCheckbox > .form-group{
+    float: left;
+    padding: 0 40px;
+}

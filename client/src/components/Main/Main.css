@@ -1,0 +1,222 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500;600&display=swap');
+
+/*All*/
+
+button:focus{
+    outline: 0 !important;
+}
+
+.hspan{
+    background-color:#df4f37 ;
+    height:7px;
+    width: 100px;
+    border-radius:5px ;
+    display: inline-block;
+    margin: 10px 0;
+}
+
+a{
+    text-decoration: none;
+    color: #df4f37;
+}
+
+a:hover{
+    text-decoration: none;
+    color: #df4f37;
+}
+
+
+.commonBtn{
+    border-radius: 55px;
+    padding:7px 25px;
+    margin: 10px;
+    border:none;
+    color:#fff;
+    background-color: #df4f37;
+    font-weight:bold;
+}
+
+/*Header section*/
+
+.Header{
+    background-image: url('../../assets/img/db_header.jpg');
+    background-position: center;
+    background-size: cover;
+    padding :120px 0;
+    color:#fff;
+    text-align: center;
+}
+
+.Header h1{
+    font-family: 'Roboto Slab', serif;
+    font-size: 50px;
+}
+
+.Header p{
+    font-size: 20px;
+}
+
+.Header button{
+    border-radius: 5px;
+    padding:10px 30px;
+    margin: 10px;
+    border:none;
+    color:#df4f37;
+    font-weight: bold;
+}
+
+
+/*About section*/
+
+.About{
+    padding: 120px;
+    text-align: center;
+}
+
+.About h1{
+    font-family: 'Roboto Slab', serif;
+    font-size: 50px;
+    margin: 0;
+}
+
+
+.About p {
+    font-size:20px;
+}
+
+
+/* Service section */
+
+.Service {
+    padding:120px;
+    background-color: #f7f6f9;
+    text-align: center;
+}
+
+.Service h1{
+    font-family: 'Roboto Slab', serif;
+    font-size: 50px;
+    text-align: center;
+}
+
+
+.serviceDiv{
+    margin-top: 50px;
+}
+
+.singleService{
+    background-color: #fff;
+    padding: 60px 40px ;
+    box-shadow: 10px 10px 25px grey;
+    border-radius: 5px;
+    margin: 5px 10px;
+    transition: 300ms;
+}
+
+.singleService:hover{
+    box-shadow: 10px 20px 35px grey;
+}
+
+.singleService svg{
+    color: #df4f37;
+    font-size: 40px;
+    margin-bottom:10px;
+}
+
+.singleService h2{
+    text-align: center;
+    font-family: 'Roboto Slab', serif;
+}
+
+.singleService p{
+    text-align: center;
+}
+
+.singleService button{
+    margin: 0 auto;
+    display: block;
+    transition: 300ms;
+}
+ .singleService button:hover{
+    padding:7px 35px;
+ }
+
+
+
+ /* Forum */
+
+ .Forum {
+    background-image: url('../../assets/img/db_header.jpg');
+    background-position: center;
+    background-size: cover;
+    padding :120px 0;
+    color:#fff;
+ }
+
+ .Forum h1{
+    font-family: 'Roboto Slab', serif;
+    font-size: 50px;
+ }
+
+
+.Forum p{
+    font-size: 20px;
+}
+
+.Forum button{
+    border-radius: 5px;
+    padding:7px 20px;
+    border:none;
+    color:#df4f37;
+    background-color:#fff;
+    font-weight:bold;
+}
+
+
+/* Purchase section */
+.Purchase{
+    padding: 120px 0;
+    text-align: center;
+    background-color: #f7f6f9;
+}
+
+.Purchase h1{
+    font-family: 'Roboto Slab', serif;
+    font-size: 50px;
+}
+
+.purchaseDiv{
+    margin-top:50px;
+}
+
+.singlePurchase{
+    text-align: left;
+    background-color: #fff;
+    margin: 20px;
+    padding: 15px;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 10px 10px 25px grey;
+    transition: 300ms;
+}
+
+.singlePurchase:hover{
+    box-shadow: 10px 20px 35px grey;
+}
+
+.iconDiv {
+    float:left;
+    font-size: 50px;
+    color: #df4f37;
+    
+}
+
+.singlePurchase > h2, .singlePurchase > p {
+    margin-left: 80px;
+}
+.singlePurchase > h2{
+    font-family: 'Roboto Slab', serif;
+}
+
+
+
