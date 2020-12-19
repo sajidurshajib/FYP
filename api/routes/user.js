@@ -12,6 +12,9 @@ router.post('/login',userController.login)
 //login
 router.post('/register',userController.register)
 
+//loaduser
+router.get('/loaduser',auth,userController.loaduser)
+
 //reset password
 router.put('/resetpass/:username',auth,userController.reset)
 

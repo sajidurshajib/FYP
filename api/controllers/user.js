@@ -1,95 +1,114 @@
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
+const config = require('config')
 
 const User = require('../models/User')
 
 //Register
 const register = (req,res,next)=>{
-    //Cryption
-    bcrypt.hash(req.body.password,10,(err,hash)=>{
-        if(err){
-            res.json({error:err})
-        }
-    //bcrpyt
-    //bcrypt brace found the bottom
-    
+    const {name, email, password} = req.body
 
-    //User model object
-    let user = new User({
-        email:req.body.email,
-        username:req.body.username,
-        password:hash
+    if(!name || !email || !password){
+        return res.status(400).json({msg:'Please enter all fields'})
+    }
 
-    })
-    
-    let email = req.body.email
-    let username = req.body.username
-    //Email exist check
     User.findOne({email})
-        .then((emailExist)=>{
-            if(emailExist){
-                res.json({message:"Email exits"})
-            }
-            else{
-                //Username exist
-                User.findOne({username})
-                .then((usernameExist)=>{
-                    if(usernameExist){
-                        res.json({message:"Username exist"})
-                    }
-                    else{
-                        //Save data
-                        user.save()
-                            .then((result)=>{
-                                res.json({
-                                    message:"User created successfully",
-                                    user: result
-                                })
-                            })
-                            .catch((err)=>{
-                                res.json({message:err})
-                            })
-                    }   // Username exist else
-                
-                })
-            }   // Email exist else
+        .then(user=>{
+            if(user) return res.status(400).json({msg:'User already exist'})
         })
-    })// bcrypt brace... 
+    
+    const newUser = new User({
+        name,
+        email,
+        password
+    })
+
+    bcrypt.genSalt(10,(err, salt)=>{
+        bcrypt.hash(newUser.password, salt,(err, hash)=>{
+            if(err) throw err
+            newUser.password=hash
+            newUser.save()
+                .then(user=>{
+
+                    jwt.sign(
+                        {id: user.id},
+                        config.get('jwtSecret'),
+                        {expiresIn:3600},
+                        (err,token)=>{
+                            if(err) throw err
+
+                            res.json({
+                                token,
+                                user:{
+                                    id:user.id,
+                                    name:user.name,
+                                    email:user.email
+                                }
+                            })
+                        }
+                    )
+                })
+        })
+        
+    })
+
 }
 
 
 
 //Login
 const login = (req,res,next)=>{
-    let username = req.body.username
-    let password = req.body.password
-    
-    User.findOne({username})
+    const {name, email, password} = req.body
+
+    if(!email || !password){
+        return res.status(400).json({msg:'Please enter all fields'})
+    }
+
+    User.findOne({email})
         .then(user=>{
-            if(user){
-                bcrypt.compare(password, user.password, (err,result)=>{
-                    if(err){
-                        res.json({message:"Error occured"})
-                    }
+            if(!user) return res.status(400).json({msg:'User does not exist'})
 
-                    if(result){
-                        let token = jwt.sign({username:user.username, id:user._id,},'SECRET', {expiresIn: '2h'})
-                        res.json({
-                            message:"Login successful",
-                            token
-                        })
-                    }
-                    else{
-                        res.json({message:"Login failed"})
-                    }
+            bcrypt.compare(password, user.password)
+                .then(isMatch=>{
+                    if(!isMatch) return res.status(400).json({msg:'Invalid credentials'})
 
+                    jwt.sign(
+                        {id: user.id},
+                        config.get('jwtSecret'),
+                        {expiresIn:3600},
+                        (err,token)=>{
+                            if(err) throw err
+
+                            res.json({
+                                token,
+                                user:{
+                                    id:user.id,
+                                    name:user.name,
+                                    email:user.email
+                                }
+                            })
+                        }
+                    )
                 })
-            }
-            else{
-                res.json({message:"User not found"})
-            }
+        })
+
+}
+
+
+
+const loaduser = (req,res,next)=>{
+    User.findById(req.user.id)
+        .select('-password')
+        .then(user=>{
+            res.json(user)
         })
 }
+
+
+
+
+
+
 
 
 const reset = (req,res,next)=>{
@@ -187,8 +206,9 @@ const all = (req,res,next)=>{
 
 
 module.exports = {
-    login,
     register,
+    login,
+    loaduser,
     reset,
     all
 }

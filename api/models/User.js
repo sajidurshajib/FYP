@@ -4,24 +4,28 @@ const valid = require('validator')
 const Schema = mongoose.Schema
 
 const userSchema = new Schema({
+    name:{
+        type: String,
+        required:true
+    },
     email: {
         type: String,
         trim: true,
+        unique: true,
         validate: {
             validator: (v)=>{
                 return valid.isEmail(v)
             },
-            message: `{VALUE} is not email`
+            msg: `{VALUE} is not email`
         }
-    },
-    username: {
-        type: String,
-        trim: true,
-        min: 3
     },
     password:{
         type: String,
         min: 3
+    },
+    register_date:{
+        type: Date,
+        default: Date.now
     }
 })
 
