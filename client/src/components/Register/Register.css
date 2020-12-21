@@ -35,7 +35,7 @@ button:focus{
     outline: 0 none !important;
 }
 
-.registerRight button{
+.registerRight button.btn-primary{
     background-color: #df4f37;
     border: none;
     padding: 5px 25px 5px 25px;

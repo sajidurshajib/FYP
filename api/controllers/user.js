@@ -6,10 +6,14 @@ const User = require('../models/User')
 
 //Register
 const register = (req,res,next)=>{
-    const {name, email, password} = req.body
+    const {name, email, password, cnf_password} = req.body
 
-    if(!name || !email || !password){
+    if(!name || !email || !password || !cnf_password){
         return res.status(400).json({msg:'Please enter all fields'})
+    }
+
+    if(cnf_password != password){
+        return res.status(400).json({msg:'Password not confirmed'})
     }
 
     User.findOne({email})
