@@ -10,8 +10,13 @@ import Home from './components/Home/Home.js';
 import Login from './components/Login/Login.js';
 import Register from './components/Register/Register.js';
 
+import {loadUser} from './actions/authAction'
+
 
 class App extends Component{
+  componentDidMount(){
+    store.dispatch(loadUser())
+  }
   render() {
     return (
       <Provider store={store}>

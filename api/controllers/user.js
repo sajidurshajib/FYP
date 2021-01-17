@@ -62,8 +62,8 @@ const register = (req,res,next)=>{
 
 //Login
 const login = (req,res,next)=>{
-    const {name, email, password} = req.body
-
+    const {email, password} = req.body
+    console.log(email)
     if(!email || !password){
         return res.status(400).json({msg:'Please enter all fields'})
     }

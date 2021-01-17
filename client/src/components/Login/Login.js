@@ -1,15 +1,63 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 
-import {Container, Row, Col, Form, Button} from 'react-bootstrap';
+import {Container, Row, Col, Form, Button,Alert} from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faDatabase} from '@fortawesome/free-solid-svg-icons';
 import './Login.css';
 
+import PropTypes from 'prop-types'
+import {login} from '../../actions/authAction'
+import {clearErrors} from '../../actions/errorAction'
+import { connect } from 'react-redux';
+ 
 class Login extends Component {
+    
+    state={
+        email:'',
+        password:'',
+        msg:null
+    }
+
+    static propTypes={
+        isAuthenticated: PropTypes.bool,
+        error: PropTypes.object.isRequired,
+        login: PropTypes.func.isRequired,
+        clearErrors: PropTypes.func.isRequired
+    }
+  
+
+    componentDidUpdate(prevProps){
+        const {error} = this.props
+        if(error!==prevProps.error){
+            if(error.id==='LOGIN_FAIL')
+                this.setState({msg:error.msg.msg})
+            else
+                this.setState({msg:null})
+        }
+    }
+
+    onChange = e =>{
+        this.setState({[e.target.name]: e.target.value})
+    }
+
+    onSubmit = e =>{
+        e.preventDefault()
+
+        const {email, password} = this.state
+
+        const user={
+            email,
+            password
+        }
+
+        this.props.login(user)
+    }
+
     render(){
         return(
             <div className="Login">
+                {this.props.isAuthenticated ? <Redirect to='/home/'/> :null}
                 <Container>
                     <Row>
                         <Col md="2"></Col>
@@ -23,19 +71,19 @@ class Login extends Component {
                         
                         <Col md="4">
                             <div className="loginRight">
-                                <Form>
-
-                                    <Form.Group controlId="formBasicEmail">
-                                        <Form.Label>Email or Username</Form.Label>
-                                        <Form.Control type="email" placeholder="Enter email" />
+                            {this.state.msg ? (<Alert variant="danger">{this.state.msg}</Alert>):null}
+                                <Form onSubmit={this.onSubmit}>
+                                    <Form.Group>
+                                        <Form.Label>Email</Form.Label>
+                                        <Form.Control onChange={this.onChange} name="email" type="email" placeholder="Enter email" />
                                     </Form.Group>
 
-                                    <Form.Group controlId="formBasicEmail">
+                                    <Form.Group>
                                         <Form.Label>password</Form.Label>
-                                        <Form.Control type="password" placeholder="Enter email" />
+                                        <Form.Control onChange={this.onChange} name="password" type="password" placeholder="Enter password" />
                                     </Form.Group>
 
-                                    <p><Link to="/register">Register</Link><span className="rightSpan"><Link>Forgot password?</Link></span></p>
+                                    <p><Link to="/register">Register</Link><span className="rightSpan"><Link to="#">Forgot password?</Link></span></p>
 
                                     <Button variant="primary" type="submit">
                                         Login
@@ -51,4 +99,9 @@ class Login extends Component {
     }
 }
 
-export default Login;
+const mapStateToProps = state =>({
+    isAuthenticated: state.auth.isAuthenticated,
+    error: state.error
+})
+
+export default connect(mapStateToProps,{login,clearErrors})(Login);

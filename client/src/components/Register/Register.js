@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 
 import {Container, Row, Col, Form, Button, Alert} from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -60,6 +60,7 @@ class Register extends Component {
     render(){
         return(
             <div className="Register">
+                {this.props.isAuthenticated ? <Redirect to="home"/>:null}
                 <Container>
                     <Row>
                         <Col md="2"></Col>
@@ -79,22 +80,22 @@ class Register extends Component {
                             
                                 <Form onSubmit={this.onSubmit}>
 
-                                    <Form.Group controlId="formBasicEmail">
+                                    <Form.Group>
                                         <Form.Label>Name</Form.Label>
                                         <Form.Control onChange={this.onChange} name="name" type="text" placeholder="Enter username" />
                                     </Form.Group>
 
-                                    <Form.Group controlId="formBasicEmail">
+                                    <Form.Group>
                                         <Form.Label>Your email</Form.Label>
                                         <Form.Control onChange={this.onChange} name="email" type="email" placeholder="Enter email" />
                                     </Form.Group>
 
-                                    <Form.Group controlId="formBasicEmail">
+                                    <Form.Group>
                                         <Form.Label>Password</Form.Label>
                                         <Form.Control onChange={this.onChange} name="password" type="password" placeholder="password" />
                                     </Form.Group>
 
-                                    <Form.Group controlId="formBasicEmail">
+                                    <Form.Group>
                                         <Form.Label>Confirm Password</Form.Label>
                                         <Form.Control onChange={this.onChange} name="cnf_password" type="password" placeholder="password" />
                                     </Form.Group>
@@ -118,7 +119,4 @@ const mapStateToProps = state =>({
     error: state.error
 })
 
-export default connect(
-    mapStateToProps,
-    {register, clearErrors}
-    )(Register)
+export default connect(mapStateToProps,{register, clearErrors})(Register)
