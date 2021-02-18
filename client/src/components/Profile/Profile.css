@@ -1,0 +1,50 @@
+
+.profile-header{
+    background-color: #df4f37;
+    color:#fff;
+    padding: 40px;
+}
+
+.profile-header h2{
+    font-weight: 600;
+    display: inline;
+}
+
+.occupation{
+    display: inline;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0 20px;
+    position: absolute;
+    top:10px;
+}
+.occupation span{
+    font-size: 14px;
+    font-weight:200;
+}
+.occupation::before{
+    content: "- ";
+}
+
+.profile-header .header{
+    font-family: 'Courier New', Courier, monospace;
+    margin: 10px 0;
+    font-weight: 600;
+}
+
+.linkSpan{
+    list-style-type: none;
+    margin: 0;
+    margin-left: -40px;
+}
+
+.linkSpan li{
+    float: left;
+    overflow: hidden;
+    display: block;
+    margin-right: 20px;
+}
+
+.linkSpan li a{
+    color: #fff;
+}

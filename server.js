@@ -27,11 +27,6 @@ db.once('open',()=>{
 })
 
 
-
-//Routes import
-const userRoute = require('./api/routes/user')
-
-
 //Express
 const app = express()
 
@@ -44,8 +39,12 @@ app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json())
 
 
+//Routes import
+const userRoute = require('./api/routes/user')
+const userProfile = require('./api/routes/profile')
 //Route middleware
 app.use('/api/user', userRoute)
+app.use('/api/profile', userProfile)
 
 
 // Main route

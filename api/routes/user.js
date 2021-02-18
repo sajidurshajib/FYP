@@ -15,10 +15,8 @@ router.post('/register',userController.register)
 //loaduser
 router.get('/loaduser',auth,userController.loaduser)
 
-//reset password
-router.put('/resetpass/:username',auth,userController.reset)
-
 //all
 router.get('/',auth,userController.all)
+
 
 module.exports = router

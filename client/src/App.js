@@ -9,6 +9,7 @@ import Main from './components/Main/Main.js';
 import Home from './components/Home/Home.js';
 import Login from './components/Login/Login.js';
 import Register from './components/Register/Register.js';
+import Profile from './components/Profile/Profile.js';
 
 import {loadUser} from './actions/authAction'
 
@@ -27,6 +28,7 @@ class App extends Component{
               <Route path='/home' component={Home}/>
               <Route path='/login' component={Login}/>
               <Route path='/register' component={Register}/>
+              <Route path='/profile' component={Profile}/>
             </Switch>
           </Router>
         </div>

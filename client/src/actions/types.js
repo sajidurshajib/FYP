@@ -13,3 +13,7 @@ export const REGISTER_FAIL = 'REGISTER_FAIL'
 export const GET_ERRORS = 'GET_ERRORS'
 export const CLEAR_ERRORS = 'CLEAR_ERRORS'
 
+export const PROFILE_DATA = 'PROFILE_DATA'
+export const PROFILE_NEW = 'PROFILE_NEW'
+export const PROFILE_UPDATE = 'PROFILE_UPDATE'
+
