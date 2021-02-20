@@ -1,4 +1,19 @@
 
+.proPic{
+    position: relative;
+}
+.proPic svg{
+    position: absolute;
+    top:165px;
+    left: 15px;
+    color: #df4f37;
+    background-color: #fff;
+    font-size: 45px;
+    padding: 12px;
+    border-radius:100px;
+    cursor:pointer;
+}
+
 .profile-header{
     background-color: #df4f37;
     color:#fff;
@@ -29,7 +44,8 @@
 .profile-header .header{
     font-family: 'Courier New', Courier, monospace;
     margin: 10px 0;
-    font-weight: 600;
+    font-weight: 400;
+    font-size: 16px;
 }
 
 .linkSpan{
@@ -47,4 +63,17 @@
 
 .linkSpan li a{
     color: #fff;
+}
+
+.btnCustom{
+    color: #df4f37 !important;
+    background: #fff;
+    border: none;
+    font-weight: bold;
+    padding:7px 25px;
+    margin-top: 20px;
+}
+.btnCustom:hover{
+    color: #df4f37 !important;
+    background: #fff;
 }
