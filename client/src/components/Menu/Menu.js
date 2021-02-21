@@ -32,7 +32,7 @@ class Menu extends Component{
                         {isAuthenticated ? 
                         <Fragment>
                             <li><Link to='/profile'><FontAwesomeIcon icon={faUser} /> {user.name}</Link></li>
-                            <li><a href='#' onClick={this.props.logout}><FontAwesomeIcon icon={faSignOutAlt} /> Logout</a></li>
+                            <li><Link onClick={this.props.logout}><FontAwesomeIcon icon={faSignOutAlt} /> Logout</Link></li>
                         </Fragment>
                         :
                         <Fragment>

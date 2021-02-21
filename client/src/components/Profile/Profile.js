@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-//import {connect} from 'react-redux';
+import {connect} from 'react-redux';
 //import {Link} from 'react-router-dom';
 import {Form ,Button ,Row ,Col, Container} from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,23 +8,28 @@ import {faTwitter, faLinkedin, faGithub} from '@fortawesome/fontawesome-free-bra
 import {faMarker} from '@fortawesome/free-solid-svg-icons'
 import Menu from '../Menu/Menu'
 import './Profile.css';
-//import { urlencoded } from 'body-parser';
 
-//import {logout} from '../../actions/authAction'
-//import PropTypes from 'prop-types'
+import PropTypes from 'prop-types'
 import PropBack from '../../assets/img/avatar.jpeg'
 class Profile extends Component{
-    
+   
+    static propTypes={
+        auth: PropTypes.object.isRequired
+    }
+
     state={
         profileExist: !null,
         editProfile: false
     }
+
+
 
     toggleEdit = ()=>{
         this.setState({editProfile: !this.state.editProfile})
     }
 
     render(){
+        const {isAuthenticated,user}=this.props.auth
         const ProPic = {
             backgroundImage:`url(${PropBack})`,
             backgroundColor:"#333",
@@ -58,9 +63,9 @@ class Profile extends Component{
                                 <p className="email"><FontAwesomeIcon icon={faEnvelope} /> sajidur.inbox@gmail.com</p>
                                 <ul className="linkSpan">
                                     <li className="linkPoint"><FontAwesomeIcon icon={faCoins} /> 50</li>
-                                    <li className="linkPoint"><FontAwesomeIcon icon={faTwitter} /> <a href="">SajidurShajib</a></li>
-                                    <li className="linkPoint"><FontAwesomeIcon icon={faLinkedin} /> <a href="">sajidurshajib</a></li>
-                                    <li className="linkPoint"><FontAwesomeIcon icon={faGithub} /> <a href="">sajidurshajib</a></li>
+                                    <li className="linkPoint"><FontAwesomeIcon icon={faTwitter} /> <a href={'www.google.com'}>SajidurShajib</a></li>
+                                    <li className="linkPoint"><FontAwesomeIcon icon={faLinkedin} /> <a href={'www.google.com'}>sajidurshajib</a></li>
+                                    <li className="linkPoint"><FontAwesomeIcon icon={faGithub} /> <a href={'www.google.com'}>sajidurshajib</a></li>
                                 </ul>
                             </Col>
                         </Row>
@@ -131,8 +136,14 @@ class Profile extends Component{
                         </Fragment >
                         ) }
 
-                        
-                        {this.state.editProfile ?  <Fragment>
+
+                    </Container>
+                </div>
+
+
+                <Container>
+                                            
+                {this.state.editProfile ?  <Fragment>
                         <br/>
                         <hr/>
                         <br/>
@@ -198,13 +209,14 @@ class Profile extends Component{
                         </Form> 
                         </Fragment > :null}
 
-                        
-                        
-                    </Container>
-                </div>
+                </Container>
             </div>
         );
     }
 }
 
-export default Profile;
+const mapStateProps = state =>({
+    auth: state.auth
+})
+
+export default connect(mapStateProps)(Profile);

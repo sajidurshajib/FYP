@@ -5,24 +5,19 @@ import {
 } from '../actions/types'
 
 const initialState={
-    isExist: null,
-    isLoading: false,
-    userData:null
+    profileExist: false,
+    profileLoading: false,
+    profileData:[]
 }
 
 export default function(state=initialState, action){
     switch(action.type){
-        case USER_LOADING:
+        case PROFILE_DATA:
             return{
                 ...state,
-                isLoading:true
-            }
-        case USER_LOADED:
-            return{
-                ...state,
-                isAuthenticated: true,
-                isLoading: false,
-                user:action.payload
+                profileExist: true,
+                profileLoading: false,
+                profileData:action.payload
             }
         default:
             return state
