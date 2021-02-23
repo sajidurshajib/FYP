@@ -57,7 +57,7 @@ class Login extends Component {
     render(){
         return(
             <div className="Login">
-                {this.props.isAuthenticated ? <Redirect to='/home/'/> :null}
+                {this.props.isAuthenticated ? <Redirect to='profile/'/> :null}
                 <Container>
                     <Row>
                         <Col md="2"></Col>

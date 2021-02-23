@@ -17,11 +17,10 @@ const all = (req,res,next)=>{
 
 //Single profile
 const singleProfile = (req, res, next)=>{
-    let id = req.params.id
-    Profile.findById(id)
+    let user_foreign = req.user.id
+    Profile.find({user_foreign})
         .then(data => {
             res.json({
-                msg: 'Profile',
                 profile: data
             })
         })
@@ -40,6 +39,7 @@ const newProfile = (req,res,next)=>{
         position:req.body.position,
         header:req.body.header,
         bio:req.body.bio,
+        email:req.body.email,
         twitter:req.body.twitter,
         linkedin:req.body.linkedin,
         github:req.body.github

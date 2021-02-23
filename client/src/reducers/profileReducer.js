@@ -1,7 +1,9 @@
 import {
+    PROFILE_LOADING,
     PROFILE_DATA,
     PROFILE_NEW,
-    PROFILE_UPDATE
+    PROFILE_UPDATE,
+    PROFILE_WIPE
 } from '../actions/types'
 
 const initialState={
@@ -18,6 +20,18 @@ export default function(state=initialState, action){
                 profileExist: true,
                 profileLoading: false,
                 profileData:action.payload
+            }
+            case PROFILE_WIPE:
+                return{
+                    ...state,
+                    profileExist: false,
+                    profileLoading: false,
+                    profileData:[]
+                }
+        case PROFILE_LOADING:
+            return{
+                ...state,
+                profileLoading:true
             }
         default:
             return state

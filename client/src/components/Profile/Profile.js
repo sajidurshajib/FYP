@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import {connect} from 'react-redux';
-//import {Link} from 'react-router-dom';
+import {Redirect} from 'react-router-dom';
 import {Form ,Button ,Row ,Col, Container} from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faCoins, faEnvelope} from '@fortawesome/free-solid-svg-icons';
@@ -11,18 +11,25 @@ import './Profile.css';
 
 import PropTypes from 'prop-types'
 import PropBack from '../../assets/img/avatar.jpeg'
+import store from '../../store'
+import {loadProfile} from '../../actions/profileAction'
+
+
+
 class Profile extends Component{
-   
+    
     static propTypes={
-        auth: PropTypes.object.isRequired
+        auth: PropTypes.object.isRequired,
+        loadProfile: PropTypes.object.isRequired
     }
 
     state={
-        profileExist: !null,
         editProfile: false
     }
 
-
+    componentDidMount(){
+        store.dispatch(loadProfile())
+    }
 
     toggleEdit = ()=>{
         this.setState({editProfile: !this.state.editProfile})
@@ -30,45 +37,56 @@ class Profile extends Component{
 
     render(){
         const {isAuthenticated,user}=this.props.auth
-        const ProPic = {
-            backgroundImage:`url(${PropBack})`,
-            backgroundColor:"#333",
-            width:"220px",
-            height:"220px",
-            backgroundSize:"cover",
-            backgroundPosition:"center",
-            borderRadius:"50%",
-            border:"4px solid #fff",
-            display:"",
-            marginRight:"0"
-        }
+        const {profileExist, profileData}=this.props.profile
+        // this.state.test = this.props.auth
+        // let g = this.state.test.user
+        // let {email} = g
+        // console.log(email)
         return(
             <div className="Profile">
+                {isAuthenticated ? null : <Redirect to='/'/>}
                 <Menu />
                 <div className="profile-header">
                     <Container>
-                    {this.state.profileExist ? (
+                    {profileExist ? (
+                        <Fragment>
                         <Row>
                             <Col md="3">
-                                <div className="proPic" style={ProPic}>
+                                <div className="proPic" style={{backgroundImage:`url(${profileData.profile[0].image})`,
+                                    backgroundColor:"#333",
+                                    width:"220px",
+                                    height:"220px",
+                                    backgroundSize:"cover",
+                                    backgroundPosition:"center",
+                                    borderRadius:"50%",
+                                    border:"4px solid #fff",
+                                    display:"",
+                                    marginRight:"0"}}>
                                     <FontAwesomeIcon icon={faMarker} title="edit profile" onClick={this.toggleEdit}/>
                                 </div>
                                 
                             </Col>
                             <Col md="9">
-                                <h2>Sajidur Rahman</h2>
-                                <p className="occupation">Software Engineer <span>[ Junior ]</span></p>
-                                <p className="header">Full-stack developer and Linux System administrator</p>
-                                <p className="bio">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic</p>
-                                <p className="email"><FontAwesomeIcon icon={faEnvelope} /> sajidur.inbox@gmail.com</p>
+                                {isAuthenticated ? 
+                                <Fragment>
+                                    <h2>{user.name}</h2>
+                                </Fragment>
+                                : null
+                                }
+                                
+                                <p className="occupation">{profileData.profile[0].occupation}<span> [ {profileData.profile[0].position} ]</span></p>
+                                <p className="header">{profileData.profile[0].header}</p>
+                                <p className="bio">{profileData.profile[0].bio}</p>
+                                <p className="email"><FontAwesomeIcon icon={faEnvelope} /> {profileData.profile[0].email}</p>
                                 <ul className="linkSpan">
-                                    <li className="linkPoint"><FontAwesomeIcon icon={faCoins} /> 50</li>
-                                    <li className="linkPoint"><FontAwesomeIcon icon={faTwitter} /> <a href={'www.google.com'}>SajidurShajib</a></li>
-                                    <li className="linkPoint"><FontAwesomeIcon icon={faLinkedin} /> <a href={'www.google.com'}>sajidurshajib</a></li>
-                                    <li className="linkPoint"><FontAwesomeIcon icon={faGithub} /> <a href={'www.google.com'}>sajidurshajib</a></li>
+                                    <li className="linkPoint"><FontAwesomeIcon icon={faCoins} /> {profileData.profile[0].point}</li>
+                                    <li className="linkPoint"><FontAwesomeIcon icon={faTwitter} /> <a href={`https://www.twitter.com/${profileData.profile[0].twitter}`} target="_blank">{profileData.profile[0].twitter}</a></li>
+                                    <li className="linkPoint"><FontAwesomeIcon icon={faLinkedin} /> <a href={`https://www.linkedin.com/in/${profileData.profile[0].linkedin}`} target="_blank">{profileData.profile[0].linkedin}</a></li>
+                                    <li className="linkPoint"><FontAwesomeIcon icon={faGithub} /> <a href={`https://www.github.com/${profileData.profile[0].github}`} target="_blank">{profileData.profile[0].github}</a></li>
                                 </ul>
                             </Col>
                         </Row>
+                        </Fragment>
                         )                        
                          :( 
                         //  if profile have no info
@@ -216,7 +234,8 @@ class Profile extends Component{
 }
 
 const mapStateProps = state =>({
-    auth: state.auth
+    auth: state.auth,
+    profile: state.profile
 })
 
 export default connect(mapStateProps)(Profile);
