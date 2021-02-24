@@ -10,7 +10,6 @@ import Menu from '../Menu/Menu'
 import './Profile.css';
 
 import PropTypes from 'prop-types'
-import PropBack from '../../assets/img/avatar.jpeg'
 import store from '../../store'
 import {loadProfile} from '../../actions/profileAction'
 
@@ -24,7 +23,8 @@ class Profile extends Component{
     }
 
     state={
-        editProfile: false
+        editProfile: false,
+        e:''
     }
 
     componentDidMount(){
@@ -41,7 +41,8 @@ class Profile extends Component{
         // this.state.test = this.props.auth
         // let g = this.state.test.user
         // let {email} = g
-        // console.log(email)
+        // this.state.e = email
+        // console.log(this.state.e)
         return(
             <div className="Profile">
                 {isAuthenticated ? null : <Redirect to='/'/>}
@@ -173,49 +174,49 @@ class Profile extends Component{
                                 <Col md="6">
                                     <Form.Group>
                                         <Form.Label>Profile picture</Form.Label>
-                                        <Form.Control name="image" type="text" placeholder="image url" />
+                                        <Form.Control name="image" type="text" placeholder="image url" value={profileData.profile[0].image}/>
                                     </Form.Group>
                                 </Col>
                                 <Col md="6">
                                     <Form.Group>
                                         <Form.Label>Occupation</Form.Label>
-                                        <Form.Control name="occupation" type="text" placeholder="Occupation name" />
+                                        <Form.Control name="occupation" type="text" placeholder="Occupation name" value={profileData.profile[0].occupation}/>
                                     </Form.Group>
                                 </Col>
                                 <Col md="6">
                                     <Form.Group>
                                         <Form.Label>Position</Form.Label>
-                                        <Form.Control name="position" type="text" placeholder="Your position" />
+                                        <Form.Control name="position" type="text" placeholder="Your position" value={profileData.profile[0].position}/>
                                     </Form.Group>
                                 </Col>
                                 <Col md="6">
                                     <Form.Group>
                                         <Form.Label>Header</Form.Label>
-                                        <Form.Control name="header" type="text" placeholder="Header text" />
+                                        <Form.Control name="header" type="text" placeholder="Header text" value={profileData.profile[0].header}/>
                                     </Form.Group>
                                 </Col>
                                 <Col md="12">
                                     <Form.Group>
                                         <Form.Label>Bio</Form.Label>
-                                        <Form.Control as="textarea" name="Bio" type="text" placeholder="your bio" />
+                                        <Form.Control as="textarea" name="Bio" type="text" placeholder="your bio" value={profileData.profile[0].bio}/>
                                     </Form.Group>
                                 </Col>
                                 <Col md="4">
                                     <Form.Group>
                                         <Form.Label>Twitter</Form.Label>
-                                        <Form.Control name="twitter" type="text" placeholder="Twitter username" />
+                                        <Form.Control name="twitter" type="text" placeholder="Twitter username" value={profileData.profile[0].twitter}/>
                                     </Form.Group>
                                 </Col>
                                 <Col md="4">
                                     <Form.Group>
                                         <Form.Label>Linkedin</Form.Label>
-                                        <Form.Control name="linkedin" type="text" placeholder="linkedin username" />
+                                        <Form.Control name="linkedin" type="text" placeholder="linkedin username" value={profileData.profile[0].linkedin}/>
                                     </Form.Group>
                                 </Col>
                                 <Col md="4">
                                     <Form.Group>
                                         <Form.Label>Github</Form.Label>
-                                        <Form.Control name="github" type="text" placeholder="github username" />
+                                        <Form.Control name="github" type="text" placeholder="github username" value={profileData.profile[0].github}/>
                                     </Form.Group>
                                 </Col>
                                 <Col md="12">
