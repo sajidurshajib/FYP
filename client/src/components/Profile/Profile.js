@@ -27,22 +27,20 @@ class Profile extends Component{
         e:''
     }
 
-    componentDidMount(){
-        store.dispatch(loadProfile())
-    }
 
     toggleEdit = ()=>{
         this.setState({editProfile: !this.state.editProfile})
     }
 
+
+    componentWillMount(){
+        store.dispatch(loadProfile())
+    }
+
     render(){
         const {isAuthenticated,user}=this.props.auth
         const {profileExist, profileData}=this.props.profile
-        // this.state.test = this.props.auth
-        // let g = this.state.test.user
-        // let {email} = g
-        // this.state.e = email
-        // console.log(this.state.e)
+
         return(
             <div className="Profile">
                 {isAuthenticated ? null : <Redirect to='/'/>}

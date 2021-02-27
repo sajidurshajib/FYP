@@ -20,11 +20,12 @@ const singleProfile = (req, res, next)=>{
     let user_foreign = req.user.id
     Profile.find({user_foreign})
         .then(data => {
+            if(data.length==0) return res.status(400).json({msg:'No data found'})
             res.json({
                 profile: data
             })
         })
-        .catch(err=>status(400).res.json({err}))
+        .catch(err=>status(400).res.json({msg:err}))
 }
 
 

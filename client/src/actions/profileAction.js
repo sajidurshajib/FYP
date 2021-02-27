@@ -5,7 +5,7 @@ import {
     PROFILE_DATA,
     PROFILE_NEW,
     PROFILE_UPDATE,
-    AUTH_ERROR
+    PROFILE_WIPE
 } from './types'
 
 
@@ -20,9 +20,9 @@ export const loadProfile=()=>(dispatch, getState)=>{
             payload:res.data
         }))
         .catch(err=>{
-            dispatch(returnErrors(err.response.data, err.response.status, AUTH_ERROR))
+            dispatch(returnErrors(err.response.data, err.response.status, PROFILE_WIPE))
             dispatch({
-                type:AUTH_ERROR
+                type:PROFILE_WIPE
             })
         })      
 }
@@ -46,3 +46,9 @@ export const tokenConfig = getState =>{
     return config;
 }
 
+
+export const profileWipe=()=>{
+    return {
+        type:PROFILE_WIPE
+    }
+}

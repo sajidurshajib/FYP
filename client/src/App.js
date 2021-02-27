@@ -14,6 +14,7 @@ import Profile from './components/Profile/Profile.js';
 import {loadUser} from './actions/authAction'
 
 
+
 class App extends Component{
   componentDidMount(){
     store.dispatch(loadUser())

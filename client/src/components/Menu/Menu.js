@@ -7,13 +7,23 @@ import { faDatabase, faHome, faPlusSquare, faSignInAlt, faSignOutAlt, faUser, fa
 import './Menu.css';
 
 import {logout} from '../../actions/authAction'
+import {profileWipe} from '../../actions/profileAction'
 import PropTypes from 'prop-types'
+
+import store from '../../store'
+
 
 class Menu extends Component{
 
     static propTypes={
         auth: PropTypes.object.isRequired,
-        logout: PropTypes.func.isRequired
+        logout: PropTypes.func.isRequired,
+        profileWipe: PropTypes.func.isRequired
+    }
+
+    logout=(e)=>{
+        this.props.logout()
+        this.props.profileWipe()
     }
 
     render(){
@@ -32,7 +42,7 @@ class Menu extends Component{
                         {isAuthenticated ? 
                         <Fragment>
                             <li><Link to='/profile'><FontAwesomeIcon icon={faUser} /> {user.name}</Link></li>
-                            <li><Link onClick={this.props.logout}><FontAwesomeIcon icon={faSignOutAlt} /> Logout</Link></li>
+                            <li><Link onClick={this.logout}><FontAwesomeIcon icon={faSignOutAlt} /> Logout</Link></li>
                         </Fragment>
                         :
                         <Fragment>
@@ -47,7 +57,8 @@ class Menu extends Component{
 }
 
 const mapStateProps = state =>({
-    auth: state.auth
+    auth: state.auth,
+    profile: state.profile
 })
 
-export default connect(mapStateProps,{logout})(Menu);
+export default connect(mapStateProps,{logout,profileWipe})(Menu);

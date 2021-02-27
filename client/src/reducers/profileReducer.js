@@ -21,13 +21,13 @@ export default function(state=initialState, action){
                 profileLoading: false,
                 profileData:action.payload
             }
-            case PROFILE_WIPE:
-                return{
-                    ...state,
-                    profileExist: false,
-                    profileLoading: false,
-                    profileData:[]
-                }
+        case PROFILE_WIPE:
+            return{
+                ...state,
+                profileExist: false,
+                profileLoading: false,
+                profileData:[]
+            }
         case PROFILE_LOADING:
             return{
                 ...state,
