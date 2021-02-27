@@ -31,10 +31,14 @@ const singleProfile = (req, res, next)=>{
 
 //New profile
 const newProfile = (req,res,next)=>{
+
+    console.log('Here...')
+    console.log(req.body.bio)
+
     
     const newProfile = new Profile({
-        user_foreign:req.body.user_foreign,
-        point:req.body.point,
+        user_foreign:req.user.id,
+        point:50,
         image:req.body.image,
         occupation:req.body.occupation,
         position:req.body.position,
@@ -46,14 +50,14 @@ const newProfile = (req,res,next)=>{
         github:req.body.github
     }) 
 
+    
     newProfile.save()
         .then(data=>{
             res.json({
-                msg:'Profile created',
                 data
             })
         })
-        .catch(err=>status(400).res.json({err}))
+        .catch(err=>res.status(400).json({err}))
 }
 
 

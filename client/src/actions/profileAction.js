@@ -28,6 +28,23 @@ export const loadProfile=()=>(dispatch, getState)=>{
 }
 
 
+export const newProfile=({image,occupation,position,header,bio,email,twitter,linkedin,github})=>(dispatch,getState)=>{
+
+    const body = JSON.stringify({image, occupation, position, header, bio, email, twitter, linkedin,github})
+
+    axios.post('/api/profile',body,tokenConfig(getState))
+        .then(res=>dispatch({
+            type:PROFILE_NEW,
+            payload:res.data
+        }))
+        .catch(err=>{
+            dispatch(returnErrors(err.response.data, err.response.status, PROFILE_WIPE))
+            dispatch({
+                type:PROFILE_WIPE
+            })
+        }) 
+}
+
 
 export const tokenConfig = getState =>{
 

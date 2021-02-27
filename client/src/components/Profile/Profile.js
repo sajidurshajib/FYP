@@ -11,7 +11,7 @@ import './Profile.css';
 
 import PropTypes from 'prop-types'
 import store from '../../store'
-import {loadProfile} from '../../actions/profileAction'
+import {loadProfile, newProfile} from '../../actions/profileAction'
 
 
 
@@ -19,27 +19,54 @@ class Profile extends Component{
     
     static propTypes={
         auth: PropTypes.object.isRequired,
-        loadProfile: PropTypes.object.isRequired
+        loadProfile: PropTypes.object.isRequired,
+        newProfile: PropTypes.func.isRequired
     }
 
     state={
         editProfile: false,
-        e:''
+        
+        image:'',
+        occupation:'',
+        position:'',
+        header:'',
+        bio:'',
+        email:'check@gmail.com',
+        twitter:'',
+        linkedin:'',
+        github:''
+
     }
 
+    onChange = e =>{
+        this.setState({[e.target.name]: e.target.value})
+    }
+
+    newSubmit= e =>{
+        e.preventDefault()
+
+        const {image,occupation,position,header,bio,email,twitter,linkedin,github} = this.state
+
+        const newProfileO = {image,occupation,position,header,bio,email,twitter,linkedin,github}
+
+        this.props.newProfile(newProfileO)
+
+        
+    }
 
     toggleEdit = ()=>{
         this.setState({editProfile: !this.state.editProfile})
     }
 
-
-    componentWillMount(){
+    componentDidMount(){
         store.dispatch(loadProfile())
     }
 
     render(){
         const {isAuthenticated,user}=this.props.auth
         const {profileExist, profileData}=this.props.profile
+
+          
 
         return(
             <div className="Profile">
@@ -93,54 +120,54 @@ class Profile extends Component{
                         <h2>Complete your profile...</h2>
                         <br/>
                         <br/>
-                        <Form>
+                        <Form onSubmit={this.newSubmit}> 
                             <Row>
                                 <Col md="6">
                                     <Form.Group>
                                         <Form.Label>Profile picture</Form.Label>
-                                        <Form.Control name="image" type="text" placeholder="image url" />
+                                        <Form.Control onChange={this.onChange} name="image" type="text" placeholder="image url" />
                                     </Form.Group>
                                 </Col>
                                 <Col md="6">
                                     <Form.Group>
                                         <Form.Label>Occupation</Form.Label>
-                                        <Form.Control name="occupation" type="text" placeholder="Occupation name" />
+                                        <Form.Control onChange={this.onChange} name="occupation" type="text" placeholder="Occupation name" />
                                     </Form.Group>
                                 </Col>
                                 <Col md="6">
                                     <Form.Group>
                                         <Form.Label>Position</Form.Label>
-                                        <Form.Control name="position" type="text" placeholder="Your position" />
+                                        <Form.Control onChange={this.onChange} name="position" type="text" placeholder="Your position" />
                                     </Form.Group>
                                 </Col>
                                 <Col md="6">
                                     <Form.Group>
                                         <Form.Label>Header</Form.Label>
-                                        <Form.Control name="header" type="text" placeholder="Header text" />
+                                        <Form.Control onChange={this.onChange} name="header" type="text" placeholder="Header text" />
                                     </Form.Group>
                                 </Col>
                                 <Col md="12">
                                     <Form.Group>
                                         <Form.Label>Bio</Form.Label>
-                                        <Form.Control as="textarea" name="Bio" type="text" placeholder="your bio" />
+                                        <Form.Control onChange={this.onChange} name="bio" as="textarea" type="text" placeholder="your bio" />
                                     </Form.Group>
                                 </Col>
                                 <Col md="4">
                                     <Form.Group>
                                         <Form.Label>Twitter</Form.Label>
-                                        <Form.Control name="twitter" type="text" placeholder="Twitter username" />
+                                        <Form.Control onChange={this.onChange} name="twitter" type="text" placeholder="Twitter username" />
                                     </Form.Group>
                                 </Col>
                                 <Col md="4">
                                     <Form.Group>
                                         <Form.Label>Linkedin</Form.Label>
-                                        <Form.Control name="linkedin" type="text" placeholder="linkedin username" />
+                                        <Form.Control onChange={this.onChange} name="linkedin" type="text" placeholder="linkedin username" />
                                     </Form.Group>
                                 </Col>
                                 <Col md="4">
                                     <Form.Group>
                                         <Form.Label>Github</Form.Label>
-                                        <Form.Control name="github" type="text" placeholder="github username" />
+                                        <Form.Control onChange={this.onChange} name="github" type="text" placeholder="github username" />
                                     </Form.Group>
                                 </Col>
                                 <Col md="12">
@@ -151,7 +178,7 @@ class Profile extends Component{
                             </Row>
                         </Form> 
                         </Fragment >
-                        ) }
+                        )}
 
 
                     </Container>
@@ -237,4 +264,4 @@ const mapStateProps = state =>({
     profile: state.profile
 })
 
-export default connect(mapStateProps)(Profile);
+export default connect(mapStateProps,{newProfile})(Profile);
