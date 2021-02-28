@@ -25,7 +25,7 @@ const singleProfile = (req, res, next)=>{
                 profile: data
             })
         })
-        .catch(err=>status(400).res.json({msg:err}))
+        .catch(err=>res.status(400).json({msg:err}))
 }
 
 
@@ -53,11 +53,15 @@ const newProfile = (req,res,next)=>{
     
     newProfile.save()
         .then(data=>{
+            console.log(data)
             res.json({
-                data
+                profile:data
             })
         })
-        .catch(err=>res.status(400).json({err}))
+        .catch(err=>{
+            console.log(err)
+            res.status(400).json({msg:err})
+        })
 }
 
 

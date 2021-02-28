@@ -38,7 +38,10 @@ export const newProfile=({image,occupation,position,header,bio,email,twitter,lin
             payload:res.data
         }))
         .catch(err=>{
+            console.log(err)
+            if(err.status===404){
             dispatch(returnErrors(err.response.data, err.response.status, PROFILE_WIPE))
+            }
             dispatch({
                 type:PROFILE_WIPE
             })
