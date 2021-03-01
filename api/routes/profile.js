@@ -11,7 +11,7 @@ router.get('/all',profileController.all)
 router.get('/single/',auth,profileController.singleProfile)
 
 //Edit
-router.put('/edit/:id',profileController.editProfile)
+router.patch('/edit/',auth,profileController.editProfile)
 
 router.post('/',auth,profileController.newProfile)
 

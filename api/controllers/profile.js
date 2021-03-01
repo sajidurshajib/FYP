@@ -32,10 +32,6 @@ const singleProfile = (req, res, next)=>{
 //New profile
 const newProfile = (req,res,next)=>{
 
-    console.log('Here...')
-    console.log(req.body.bio)
-
-    
     const newProfile = new Profile({
         user_foreign:req.user.id,
         point:50,
@@ -59,7 +55,6 @@ const newProfile = (req,res,next)=>{
             })
         })
         .catch(err=>{
-            console.log(err)
             res.status(400).json({msg:err})
         })
 }
@@ -67,30 +62,47 @@ const newProfile = (req,res,next)=>{
 
 //Edit profile
 const editProfile = (req,res,next)=>{
-    const id = req.params.id
+    const id = req.user.id
+
+    const {image,occupation,position,header,bio,email,twitter,linkedin,github} = req.body
+
     let updateProfile = {
-        point:req.body.point,
-        image:req.body.image,
-        occupation:req.body.occupation,
-        position:req.body.position,
-        header:req.body.header,
-        bio:req.body.bio,
-        twitter:req.body.twitter,
-        linkedin:req.body.linkedin,
-        github:req.body.github
+        // image:req.body.image,
+        // occupation:req.body.occupation,
+        // position:req.body.position,
+        // header:req.body.header,
+        // bio:req.body.bio,
+        // email:req.body.email,
+        // twitter:req.body.twitter,
+        // linkedin:req.body.linkedin,
+        // github:req.body.github
     }
 
-    Profile.findByIdAndUpdate(id, {$set: updateProfile})
+        if(image){updateProfile['image']=image}
+        if(occupation){updateProfile['occupation']=occupation}
+        if(position){updateProfile['position']=position}
+        if(header){updateProfile['header']=header}
+        if(bio){updateProfile['bio']=bio}
+        if(email){updateProfile['email']=email}
+        if(twitter){updateProfile['twitter']=twitter}
+        if(linkedin){updateProfile['linkedin']=linkedin}
+        if(github){updateProfile['github']=github}
+
+        console.log(updateProfile)
+
+    Profile.findOneAndUpdate({user_foreign:id},updateProfile, {new:true})
         .then(data => {
+            console.log(data)
             Profile.findById(data._id)
                 .then(newData => {
                     res.json({
-                        msg:'Contact update',
-                        newData
+                        profile:newData
                     })
                 })
         })
-        .catch(err=>status(400).res.json({err}))
+        .catch(err=>{
+            return res.status(400).json({msg:err})
+        })
 }
 
 module.exports = {

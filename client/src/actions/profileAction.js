@@ -38,7 +38,28 @@ export const newProfile=({image,occupation,position,header,bio,email,twitter,lin
             payload:res.data
         }))
         .catch(err=>{
-            console.log(err)
+            if(err.status===404){
+            dispatch(returnErrors(err.response.data, err.response.status, PROFILE_WIPE))
+            }
+            dispatch({
+                type:PROFILE_WIPE
+            })
+        }) 
+}
+
+
+export const updateProfile=({image,occupation,position,header,bio,email,twitter,linkedin,github})=>(dispatch,getState)=>{
+
+    const body = JSON.stringify({image, occupation, position, header, bio, email, twitter, linkedin,github})
+
+
+
+    axios.patch('/api/profile/edit',body,tokenConfig(getState))
+        .then(res=>dispatch({
+            type:PROFILE_UPDATE,
+            payload:res.data
+        }))
+        .catch(err=>{
             if(err.status===404){
             dispatch(returnErrors(err.response.data, err.response.status, PROFILE_WIPE))
             }

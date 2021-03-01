@@ -11,7 +11,7 @@ import './Profile.css';
 
 import PropTypes from 'prop-types'
 import store from '../../store'
-import {loadProfile, newProfile} from '../../actions/profileAction' // 3step edit needed
+import {loadProfile, newProfile, updateProfile} from '../../actions/profileAction' 
 
 
 
@@ -20,7 +20,8 @@ class Profile extends Component{
     static propTypes={
         auth: PropTypes.object.isRequired,
         loadProfile: PropTypes.object.isRequired,
-        newProfile: PropTypes.func.isRequired
+        newProfile: PropTypes.func.isRequired,
+        updateProfile: PropTypes.func.isRequired
     }
 
     state={
@@ -59,7 +60,17 @@ class Profile extends Component{
 
         const {image,occupation,position,header,bio,email,twitter,linkedin,github} = this.state
 
-        const updateProfile = {image,occupation,position,header,bio,email,twitter,linkedin,github}
+        let updateProfile = {}
+
+        if(image!==''){updateProfile['image']=image}
+        if(occupation!==''){updateProfile['occupation']=occupation}
+        if(position!==''){updateProfile['position']=position}
+        if(header!==''){updateProfile['header']=header}
+        if(bio!==''){updateProfile['bio']=bio}
+        if(email!==''){updateProfile['email']=email}
+        if(twitter!==''){updateProfile['twitter']=twitter}
+        if(linkedin!==''){updateProfile['linkedin']=linkedin}
+        if(github!==''){updateProfile['github']=github}
 
         this.props.updateProfile(updateProfile)
 
@@ -75,7 +86,7 @@ class Profile extends Component{
     }
 
     render(){
-        const {isAuthenticated,user,isLoading}=this.props.auth
+        const {isAuthenticated,user}=this.props.auth
         const {profileExist, profileData}=this.props.profile
 
           
@@ -205,7 +216,7 @@ class Profile extends Component{
 
                 <Container>
                                             
-                {this.state.editProfile ?  <Fragment>
+                {this.state.editProfile && profileExist ?  <Fragment>
                         <div className="update-section">
                         <br/>
                         <hr/>
@@ -218,60 +229,60 @@ class Profile extends Component{
                                 <Col md="6">
                                     <Form.Group>
                                         <Form.Label>Profile picture</Form.Label>
-                                        <Form.Control name="image" type="text" placeholder={profileData.profile[0].image}/>
+                                        <Form.Control onChange={this.onChange} name="image" type="text" placeholder={profileData.profile[0]?.image}/>
                                     </Form.Group>
                                 </Col>
                                 <Col md="6">
                                     <Form.Group>
                                         <Form.Label>Occupation</Form.Label>
-                                        <Form.Control name="occupation" type="text" placeholder={profileData.profile[0].occupation}/>
+                                        <Form.Control onChange={this.onChange} name="occupation" type="text" placeholder={profileData.profile[0]?.occupation}/>
                                     </Form.Group>
                                 </Col>
                                 <Col md="6">
                                     <Form.Group>
                                         <Form.Label>Position</Form.Label>
-                                        <Form.Control name="position" type="text" placeholder={profileData.profile[0].position}/>
+                                        <Form.Control onChange={this.onChange} name="position" type="text" placeholder={profileData.profile[0]?.position}/>
                                     </Form.Group>
                                 </Col>
                                 <Col md="6">
                                     <Form.Group>
                                         <Form.Label>Header</Form.Label>
-                                        <Form.Control name="header" type="text" placeholder={profileData.profile[0].header}/>
+                                        <Form.Control onChange={this.onChange} name="header" type="text" placeholder={profileData.profile[0]?.header}/>
                                     </Form.Group>
                                 </Col>
                                 <Col md="12">
                                     <Form.Group>
                                         <Form.Label>Bio</Form.Label>
-                                        <Form.Control as="textarea" name="Bio" type="text" placeholder={profileData.profile[0].bio} rows="5"/>
+                                        <Form.Control onChange={this.onChange} as="textarea" name="bio" type="text" placeholder={profileData.profile[0]?.bio} rows="5"/>
                                     </Form.Group>
                                 </Col>
                                 <Col md="3">
                                     <Form.Group>
                                         <Form.Label>Email</Form.Label>
-                                        <Form.Control onChange={this.onChange} name="email" type="email" placeholder={profileData.profile[0].email} />
+                                        <Form.Control onChange={this.onChange} name="email" type="email" placeholder={profileData.profile[0]?.email} />
                                     </Form.Group>
                                 </Col>
                                 <Col md="3">
                                     <Form.Group>
                                         <Form.Label>Twitter</Form.Label>
-                                        <Form.Control name="twitter" type="text" placeholder={profileData.profile[0].twitter}/>
+                                        <Form.Control onChange={this.onChange} name="twitter" type="text" placeholder={profileData.profile[0]?.twitter}/>
                                     </Form.Group>
                                 </Col>
                                 <Col md="3">
                                     <Form.Group>
                                         <Form.Label>Linkedin</Form.Label>
-                                        <Form.Control name="linkedin" type="text" placeholder={profileData.profile[0].linkedin}/>
+                                        <Form.Control onChange={this.onChange} name="linkedin" type="text" placeholder={profileData.profile[0]?.linkedin}/>
                                     </Form.Group>
                                 </Col>
                                 <Col md="3">
                                     <Form.Group>
                                         <Form.Label>Github</Form.Label>
-                                        <Form.Control name="github" type="text" placeholder={profileData.profile[0].github}/>
+                                        <Form.Control onChange={this.onChange} name="github" type="text" placeholder={profileData.profile[0]?.github}/>
                                     </Form.Group>
                                 </Col>
                                 <Col md="12">
-                                    <Button className="btnCustom" variant="danger" type="submit">
-                                        Submit
+                                    <Button className="btnUpdate" variant="danger" type="submit">
+                                        Update
                                     </Button>
                                 </Col>
                             </Row>
@@ -290,4 +301,4 @@ const mapStateProps = state =>({
     profile: state.profile
 })
 
-export default connect(mapStateProps,{newProfile})(Profile);
+export default connect(mapStateProps,{newProfile, updateProfile})(Profile);
