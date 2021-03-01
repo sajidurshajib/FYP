@@ -11,7 +11,7 @@ import './Profile.css';
 
 import PropTypes from 'prop-types'
 import store from '../../store'
-import {loadProfile, newProfile} from '../../actions/profileAction'
+import {loadProfile, newProfile} from '../../actions/profileAction' // 3step edit needed
 
 
 
@@ -31,7 +31,7 @@ class Profile extends Component{
         position:'',
         header:'',
         bio:'',
-        email:'check@gmail.com',
+        email:'',
         twitter:'',
         linkedin:'',
         github:''
@@ -51,6 +51,19 @@ class Profile extends Component{
 
         this.props.newProfile(newProfile)
 
+        store.dispatch(loadProfile())
+    }
+
+    updateSubmit= e =>{
+        e.preventDefault()
+
+        const {image,occupation,position,header,bio,email,twitter,linkedin,github} = this.state
+
+        const updateProfile = {image,occupation,position,header,bio,email,twitter,linkedin,github}
+
+        this.props.updateProfile(updateProfile)
+
+        store.dispatch(loadProfile())
     }
 
     toggleEdit = ()=>{
@@ -148,22 +161,28 @@ class Profile extends Component{
                                 <Col md="12">
                                     <Form.Group>
                                         <Form.Label>Bio</Form.Label>
-                                        <Form.Control onChange={this.onChange} name="bio" as="textarea" type="text" placeholder="your bio" />
+                                        <Form.Control onChange={this.onChange} name="bio" as="textarea" type="text" placeholder="your bio" rows="5"/>
                                     </Form.Group>
                                 </Col>
-                                <Col md="4">
+                                <Col md="3">
+                                    <Form.Group>
+                                        <Form.Label>Email</Form.Label>
+                                        <Form.Control onChange={this.onChange} name="email" type="email" placeholder="Your email" />
+                                    </Form.Group>
+                                </Col>
+                                <Col md="3">
                                     <Form.Group>
                                         <Form.Label>Twitter</Form.Label>
                                         <Form.Control onChange={this.onChange} name="twitter" type="text" placeholder="Twitter username" />
                                     </Form.Group>
                                 </Col>
-                                <Col md="4">
+                                <Col md="3">
                                     <Form.Group>
                                         <Form.Label>Linkedin</Form.Label>
                                         <Form.Control onChange={this.onChange} name="linkedin" type="text" placeholder="linkedin username" />
                                     </Form.Group>
                                 </Col>
-                                <Col md="4">
+                                <Col md="3">
                                     <Form.Group>
                                         <Form.Label>Github</Form.Label>
                                         <Form.Control onChange={this.onChange} name="github" type="text" placeholder="github username" />
@@ -187,60 +206,67 @@ class Profile extends Component{
                 <Container>
                                             
                 {this.state.editProfile ?  <Fragment>
+                        <div className="update-section">
                         <br/>
                         <hr/>
                         <br/>
                         <h2>Update your profile</h2>
                         <br/>
                         <br/>
-                        <Form>
+                        <Form onSubmit={this.updateSubmit}>
                             <Row>
                                 <Col md="6">
                                     <Form.Group>
                                         <Form.Label>Profile picture</Form.Label>
-                                        <Form.Control name="image" type="text" placeholder="image url" value={profileData.profile[0].image}/>
+                                        <Form.Control name="image" type="text" placeholder={profileData.profile[0].image}/>
                                     </Form.Group>
                                 </Col>
                                 <Col md="6">
                                     <Form.Group>
                                         <Form.Label>Occupation</Form.Label>
-                                        <Form.Control name="occupation" type="text" placeholder="Occupation name" value={profileData.profile[0].occupation}/>
+                                        <Form.Control name="occupation" type="text" placeholder={profileData.profile[0].occupation}/>
                                     </Form.Group>
                                 </Col>
                                 <Col md="6">
                                     <Form.Group>
                                         <Form.Label>Position</Form.Label>
-                                        <Form.Control name="position" type="text" placeholder="Your position" value={profileData.profile[0].position}/>
+                                        <Form.Control name="position" type="text" placeholder={profileData.profile[0].position}/>
                                     </Form.Group>
                                 </Col>
                                 <Col md="6">
                                     <Form.Group>
                                         <Form.Label>Header</Form.Label>
-                                        <Form.Control name="header" type="text" placeholder="Header text" value={profileData.profile[0].header}/>
+                                        <Form.Control name="header" type="text" placeholder={profileData.profile[0].header}/>
                                     </Form.Group>
                                 </Col>
                                 <Col md="12">
                                     <Form.Group>
                                         <Form.Label>Bio</Form.Label>
-                                        <Form.Control as="textarea" name="Bio" type="text" placeholder="your bio" value={profileData.profile[0].bio}/>
+                                        <Form.Control as="textarea" name="Bio" type="text" placeholder={profileData.profile[0].bio} rows="5"/>
                                     </Form.Group>
                                 </Col>
-                                <Col md="4">
+                                <Col md="3">
+                                    <Form.Group>
+                                        <Form.Label>Email</Form.Label>
+                                        <Form.Control onChange={this.onChange} name="email" type="email" placeholder={profileData.profile[0].email} />
+                                    </Form.Group>
+                                </Col>
+                                <Col md="3">
                                     <Form.Group>
                                         <Form.Label>Twitter</Form.Label>
-                                        <Form.Control name="twitter" type="text" placeholder="Twitter username" value={profileData.profile[0].twitter}/>
+                                        <Form.Control name="twitter" type="text" placeholder={profileData.profile[0].twitter}/>
                                     </Form.Group>
                                 </Col>
-                                <Col md="4">
+                                <Col md="3">
                                     <Form.Group>
                                         <Form.Label>Linkedin</Form.Label>
-                                        <Form.Control name="linkedin" type="text" placeholder="linkedin username" value={profileData.profile[0].linkedin}/>
+                                        <Form.Control name="linkedin" type="text" placeholder={profileData.profile[0].linkedin}/>
                                     </Form.Group>
                                 </Col>
-                                <Col md="4">
+                                <Col md="3">
                                     <Form.Group>
                                         <Form.Label>Github</Form.Label>
-                                        <Form.Control name="github" type="text" placeholder="github username" value={profileData.profile[0].github}/>
+                                        <Form.Control name="github" type="text" placeholder={profileData.profile[0].github}/>
                                     </Form.Group>
                                 </Col>
                                 <Col md="12">
@@ -250,6 +276,7 @@ class Profile extends Component{
                                 </Col>
                             </Row>
                         </Form> 
+                        </div>
                         </Fragment > :null}
 
                 </Container>

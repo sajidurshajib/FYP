@@ -10,7 +10,6 @@ import {logout} from '../../actions/authAction'
 import {profileWipe} from '../../actions/profileAction'
 import PropTypes from 'prop-types'
 
-import store from '../../store'
 
 
 class Menu extends Component{

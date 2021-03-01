@@ -1,4 +1,3 @@
-
 .proPic{
     position: relative;
 }
@@ -76,4 +75,15 @@
 .btnCustom:hover{
     color: #df4f37 !important;
     background: #fff;
+}
+
+.update-section form label{
+    color:#df4f37;
+}
+.update-section h2{
+    color: #df4f37;
+}
+
+.form-control{
+    border-radius: 2px;
 }
