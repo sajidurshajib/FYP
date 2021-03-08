@@ -42,15 +42,17 @@ app.use(bodyParser.json())
 //Routes import
 const userRoute = require('./api/routes/user')
 const userProfile = require('./api/routes/profile')
+const dynamicForm = require('./api/routes/form')
 //Route middleware
 app.use('/api/user', userRoute)
 app.use('/api/profile', userProfile)
+app.use('/api/form', dynamicForm)
 
 
 // Main route
 app.get('/',(req,res,next)=>{
     res.json({
-        message:"Main route"
+        message:"Route Root"
     })
 })
 
