@@ -1,11 +1,26 @@
 const Form = require('../models/Form')
 
+
+const all = (req,res,next)=>{
+    Form.find()
+        .then(form=>{
+            res.json({
+                form
+            })
+        })
+        .catch(err=>{
+            res.json({
+                err
+            })
+        })
+}
+
 //New profile
 const newForm = (req,res,next)=>{
 
     const newForm = new Form({
-        author_foreign:req.body.id,
-        title:req.body.tittle,
+        author_foreign:req.body.author_foreign,
+        title:req.body.title,
         description:req.body.description,
         form:req.body.form,
         access:req.body.access
@@ -26,5 +41,6 @@ const newForm = (req,res,next)=>{
 
 
 module.exports = {
+    all,
     newForm
 }

@@ -4,7 +4,9 @@ const formController = require('../controllers/form')
 //Auth import 
 const auth = require('../middleware/auth')
 
-router.post('/',formController.newProfile)
+router.get('/all',formController.all)
+
+router.post('/',formController.newForm)
 
 
 module.exports = router
