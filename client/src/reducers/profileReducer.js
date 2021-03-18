@@ -15,13 +15,25 @@ const initialState={
 export default function(state=initialState, action){
     switch(action.type){
         case PROFILE_DATA:
-        case PROFILE_NEW:
-        case PROFILE_UPDATE:
             return{
                 ...state,
                 profileExist: true,
                 profileLoading: false,
                 profileData:action.payload
+            }
+        case PROFILE_NEW:
+            return{
+                ...state,
+                profileExist: true,
+                profileLoading: false,
+                //profileData:action.payload
+            }
+        case PROFILE_UPDATE:
+            return{
+                ...state,
+                profileExist: true,
+                profileLoading: false,
+                //profileData:action.payload
             }
         case PROFILE_WIPE:
             return{

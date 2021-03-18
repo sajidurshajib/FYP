@@ -87,9 +87,7 @@ class Profile extends Component{
 
     render(){
         const {isAuthenticated,user}=this.props.auth
-        const {profileExist, profileData}=this.props.profile
-
-          
+        const {profileExist, profileData, profileLoading}=this.props.profile
 
         return(
             <div className="Profile">
@@ -97,7 +95,7 @@ class Profile extends Component{
                 <Menu />
                 <div className="profile-header">
                     <Container>
-                    {profileExist ? (
+                    {profileExist && !profileLoading ? (
                         <Fragment>
                         <Row>
                             <Col md="3">

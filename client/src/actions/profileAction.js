@@ -11,10 +11,10 @@ import {
 
 
 
-export const loadProfile=()=>(dispatch, getState)=>{
+export const loadProfile=()=>async (dispatch, getState)=>{
     dispatch({type:PROFILE_LOADING})
 
-    axios.get('/api/profile/single',tokenConfig(getState))
+    await axios.get('/api/profile/single',tokenConfig(getState))
         .then(res=>dispatch({
             type:PROFILE_DATA,
             payload:res.data
