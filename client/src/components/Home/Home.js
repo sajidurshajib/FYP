@@ -1,11 +1,17 @@
-import React, { Component } from 'react';
+import React, { Component} from 'react';
 import {Container, Row, Col, Form} from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome,} from '@fortawesome/free-solid-svg-icons';
 import Menu from '../Menu/Menu.js';
 import './Home.css';
+import JSONDATA from "./MOCK_DATA.json"
 
 class Home extends Component{
+
+    state={
+        search:''
+    }
+
     render(){
         return(
             <div className="Home">
@@ -24,7 +30,7 @@ class Home extends Component{
                                         <Form.Control type="email" placeholder="Search..." />
                                     </Form.Group>
                                     
-                                    <div className="searchCheckbox d-flex justify-content-center">
+                                    {/* <div className="searchCheckbox d-flex justify-content-center">
                                         <Form.Group controlId="formBasicCheckbox">
                                             <Form.Check type="checkbox" label="Top" />
                                         </Form.Group>
@@ -41,7 +47,7 @@ class Home extends Component{
                                             <Form.Check type="checkbox" label="Site" />
                                         </Form.Group>
 
-                                    </div> 
+                                    </div>  */}
                                                                        
                                 </Form> 
 
@@ -49,6 +55,27 @@ class Home extends Component{
                         </Row>
                     </Container>
                 </div>   
+                <div className="homeData">
+                    <Container>
+                        {JSONDATA.map((val, key)=>{
+                            return(
+                                <div className="everyResult" key={key}>
+                                    <Row>
+                                        <Col md="2"></Col>
+                                        <Col md="8">
+                                            <div className="everyWrapper">
+                                                <h3>{val.tittle}</h3>
+                                                <p className="user">{val.user}</p>
+                                                <p className="user">{val.date}</p>
+                                                <p className="user">{val.description}</p>
+                                            </div>
+                                        </Col>
+                                    </Row>
+                                </div>
+                            );
+                        })}
+                    </Container>
+                </div>
             </div>
         );
     }

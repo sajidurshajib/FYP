@@ -41,3 +41,16 @@ button:focus{
     float: left;
     padding: 0 40px;
 }
+
+
+.everyWrapper{
+    border: 1px solid #df4f37;
+    border-radius: 2px;
+    margin: 10px 0;
+    padding:5px 10px;
+    display: block;
+}
+.everyWrapper h3{
+    font-family: 'Roboto Slab', serif;
+    font-size: 20px;
+}
