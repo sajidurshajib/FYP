@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500;600&display=swap');
 
 .homeTop{
     background-image: url('../../assets/img/db_header.jpg');
@@ -44,13 +44,38 @@ button:focus{
 
 
 .everyWrapper{
-    border: 1px solid #df4f37;
+    border: 2px solid #fbe9e7;
     border-radius: 2px;
     margin: 10px 0;
-    padding:5px 10px;
+    padding:10px 10px;
     display: block;
+    height: 110px;
+    overflow: hidden;
+    transition: 300ms;
 }
+.everyWrapper:hover{
+    transition-delay: 500ms;
+    height: 155px;
+}
+
 .everyWrapper h3{
     font-family: 'Roboto Slab', serif;
     font-size: 20px;
+}
+
+.everyWrapper .user{
+    color:#df4f37;
+    margin-bottom: 5px;
+}
+.everyWrapper .user svg{
+    font-size: 12px;
+}
+.everyWrapper .date{
+    color:grey;
+    font-size:12px;
+}
+
+.everyWrapper .detail{
+    font-weight: 400;
+    font-size: 14px;
 }

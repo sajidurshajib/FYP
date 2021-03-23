@@ -1,7 +1,7 @@
 import React, { Component} from 'react';
 import {Container, Row, Col, Form} from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome,} from '@fortawesome/free-solid-svg-icons';
+import { faHome, faUser, faCalendar} from '@fortawesome/free-solid-svg-icons';
 import Menu from '../Menu/Menu.js';
 import './Home.css';
 import JSONDATA from "./MOCK_DATA.json"
@@ -64,10 +64,10 @@ class Home extends Component{
                                         <Col md="2"></Col>
                                         <Col md="8">
                                             <div className="everyWrapper">
-                                                <h3>{val.tittle}</h3>
-                                                <p className="user">{val.user}</p>
-                                                <p className="user">{val.date}</p>
-                                                <p className="user">{val.description}</p>
+                                                <h3><a href="#">{val.tittle}</a></h3>
+                                                <p className="user"><FontAwesomeIcon icon={faUser} /> <a href="#">{val.user}</a></p>
+                                                <p className="date"><FontAwesomeIcon icon={faCalendar} /> {val.date}</p>
+                                                <p className="detail">{val.description}</p>
                                             </div>
                                         </Col>
                                     </Row>
