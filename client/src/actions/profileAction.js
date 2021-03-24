@@ -39,7 +39,7 @@ export const newProfile=({image,occupation,position,header,bio,email,twitter,lin
         }))
         .catch(err=>{
             if(err.status===404){
-            dispatch(returnErrors(err.response.data, err.response.status, PROFILE_WIPE))
+                dispatch(returnErrors(err.response.data, err.response.status, PROFILE_WIPE))
             }
             dispatch({
                 type:PROFILE_WIPE
@@ -61,7 +61,7 @@ export const updateProfile=({image,occupation,position,header,bio,email,twitter,
         }))
         .catch(err=>{
             if(err.status===404){
-            dispatch(returnErrors(err.response.data, err.response.status, PROFILE_WIPE))
+                dispatch(returnErrors(err.response.data, err.response.status, PROFILE_WIPE))
             }
             dispatch({
                 type:PROFILE_WIPE

@@ -55,12 +55,13 @@ button:focus{
 }
 .everyWrapper:hover{
     transition-delay: 500ms;
-    height: 155px;
+    height: 90%;
 }
 
-.everyWrapper h3{
+.everyWrapper h3 a{
     font-family: 'Roboto Slab', serif;
     font-size: 20px;
+    color:#444;
 }
 
 .everyWrapper .user{

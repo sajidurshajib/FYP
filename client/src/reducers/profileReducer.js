@@ -24,7 +24,7 @@ export default function(state=initialState, action){
         case PROFILE_NEW:
             return{
                 ...state,
-                profileExist: true,
+                profileExist: false,
                 profileLoading: false,
                 //profileData:action.payload
             }

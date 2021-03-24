@@ -35,7 +35,7 @@ class Menu extends Component{
                     </span>
                     <ul className="MenuUl">
                         <li><Link to='/home'><FontAwesomeIcon icon={faHome} /> Home</Link></li>
-                        <li><Link to='/build'><FontAwesomeIcon icon={faPlusSquare} /> Build</Link></li>
+                        <li><Link to='/builder'><FontAwesomeIcon icon={faPlusSquare} /> Builder</Link></li>
                         
                         
                         {isAuthenticated ? 

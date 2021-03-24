@@ -10,6 +10,7 @@ import Home from './components/Home/Home.js';
 import Login from './components/Login/Login.js';
 import Register from './components/Register/Register.js';
 import Profile from './components/Profile/Profile.js';
+import Builder from './components/Builder/Builder.js';
 
 import {loadUser} from './actions/authAction'
 
@@ -30,6 +31,7 @@ class App extends Component{
               <Route path='/login' component={Login}/>
               <Route path='/register' component={Register}/>
               <Route path='/profile' component={Profile}/>
+              <Route path='/builder' component={Builder}/>
             </Switch>
           </Router>
         </div>

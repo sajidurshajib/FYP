@@ -12,7 +12,12 @@ class Home extends Component{
         search:''
     }
 
+    onChange = e =>{
+        this.setState({[e.target.name]: e.target.value})
+    }
+
     render(){
+        console.log(this.state.search)
         return(
             <div className="Home">
                 <Menu/>
@@ -23,11 +28,12 @@ class Home extends Component{
                             <Col md="8">
                                 <h2><FontAwesomeIcon icon={faHome}/> Home</h2>
                                 <p>For better analysis, Need Data? <br/>Search whatever you want...</p>
+                                <br/>
                                 
                                 <Form className="searchForm">
                                     
                                     <Form.Group controlId="formBasicEmail">
-                                        <Form.Control type="email" placeholder="Search..." />
+                                        <Form.Control name="search" onChange={this.onChange} type="text" placeholder="Search..." />
                                     </Form.Group>
                                     
                                     {/* <div className="searchCheckbox d-flex justify-content-center">
@@ -57,7 +63,13 @@ class Home extends Component{
                 </div>   
                 <div className="homeData">
                     <Container>
-                        {JSONDATA.map((val, key)=>{
+                        {JSONDATA.filter((val)=>{
+                            if(this.state.search==""){
+                                return val;
+                            }else if(val.tittle.toLocaleLowerCase().includes(this.state.search.toLowerCase())){
+                                return val;
+                            }
+                        }).map((val, key)=>{
                             return(
                                 <div className="everyResult" key={key}>
                                     <Row>
