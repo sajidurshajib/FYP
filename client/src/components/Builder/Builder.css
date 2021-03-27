@@ -1,0 +1,260 @@
+.center{
+    text-align: center;
+}
+.heading{
+    background-color: #df4f37;
+    color:#fff;
+    border-radius: 2px;
+    padding: 15px;
+    margin-top: 10px;
+    font-size: 24px;
+    font-weight:500;
+}
+
+code{
+    color: #333 !important;
+    background-color:lightgray;
+    padding:2px;
+    border-radius: 2px;
+    font-size: 11px !important;
+}
+
+/*This is for button*/
+
+button{
+    background-color:#df4f37;
+    color: #fff;
+    border:none;
+    border-radius: 2px;
+    display: block;
+    margin:10px !important;
+    padding: 5px 10px;
+    transition: 200ms;
+    outline: none;
+}
+button:focus{
+    border: none !important;
+    outline: none !important;
+}
+button:hover{
+    background-color: #ff5438;
+}
+
+.ml-10{
+    display: inline-block !important;
+    width: 100%;
+    margin-left: 0!important;
+    border-radius: 2px;
+    background-color: #c62828;
+}
+/*This is for label*/
+
+label{
+    color: #333;
+    display: inline-block;
+    margin: 10px auto;
+    margin-right: 10px;
+}
+.likeLabel{
+    color: #333;
+    margin:10px;
+}
+
+
+.labelElement{
+    float: right;
+    position: relative;
+    margin-top: -32px;
+}
+.labelElement li{
+    float:left;
+    list-style-type: none;
+    color: #fff;
+    background-color: #df4f37;
+    cursor: pointer;
+    margin: 0 2px;
+    padding: 2px 10px;
+    font-size: 12px;
+    border-radius: 2px;
+    cursor: pointer;
+}
+.labelElement li:hover{
+    background-color: #df4f37;
+}
+
+
+
+/*All input fieald*/
+
+input{
+    border: 1px solid #df4f37;
+    border-radius: 2px;
+    padding:2px 5px;
+}
+input:focus{
+    outline: none;
+}
+
+
+input[type=text]{
+    display: block;
+    margin:10px auto;
+    display: block;
+    width: 100%;
+}
+
+
+textarea{
+    border: 1px solid #df4f37;
+    border-radius: 2px;
+    padding:2px 5px;
+    display: inline-block;
+    width: 100%;
+    height: 100px;
+    margin:10px auto;
+}
+textarea:focus{
+    outline: none;
+}
+
+
+
+/* flip design*/
+.flip{
+    font-weight: 700;
+    font-size: 16px;
+    padding: 5px 10px;
+    margin: 2px 0;
+    border-radius:2px;
+    background-color: #df4f37;
+    color: #fff;
+    width: 100%;
+    cursor: pointer;
+    position: relative;
+    transition: 200ms;
+}
+.flip:hover{
+    background-color:#ff5438;
+}
+.flip span{
+    position: absolute;
+    right: 10px;
+}
+
+
+/* those css user for other dropdown  */
+.dropAddRemove{
+    display:inline-block;
+    width: 40%;
+    margin: 5px 15px 5px 10px!important;
+    background-color: #c62828;
+}
+.dropText{
+    display:inline-block;
+    width: 40%;
+    margin: 5px 10px;
+}
+.dropValue{
+    display: inline-block;
+    width: 40%;
+    margin: 5px 15px;
+}
+select.form-control{
+    display: inline-block;
+    width: auto;
+    margin: auto;
+    border: 1px solid #df4f37;
+    padding: 5px 20px;
+    margin-right: 20px;
+}
+
+
+
+
+/* this two css use other dropdown */
+.ddShowLeft{
+    margin-left: 4%;
+    width:44%;
+    display: inline-block;
+    background-color:#fff;
+    border: 1px solid #ff5438;
+    font-size: 12px;
+    padding:4px;
+}
+.ddShowRight{
+    margin-right: 4%;
+    width:44%;
+    display: inline-block;
+    background-color:#ff5438;
+    border: 1px solid #ff5438;
+    color: #fff;
+    font-size: 12px;
+    padding:4px;
+}
+
+
+
+
+
+
+
+.radioAddRemove{
+    display:inline-block;
+    width: 40%;
+    margin: 5px 9px;
+}
+.radioText{
+    display:inline-block;
+    width: 40%;
+    margin: 5px 10px;
+}
+.radioValue{
+    display: inline-block;
+    width: 40%;
+    margin: 5px 10px;
+}
+
+.radioLabel{
+    display: inline-block;
+    margin: 5px;
+}
+
+.radioBtnLabel{
+    padding-left: 5px;
+}
+
+
+
+
+.checkBoxAddRemove{
+    display:inline-block;
+    width: 40%;
+    margin: 5px 9px;
+}
+
+.checkBoxText{
+    display:inline-block;
+    width: 40%;
+    margin: 5px 10px;
+}
+.checkBoxValue{
+    display: inline-block;
+    width: 40%;
+    margin: 5px 10px;
+}
+
+.checkBoxLabel{
+    display: inline-block;
+    margin: 5px;
+}
+
+
+
+.ShowData{
+    font-size:12px;
+    padding:5px 15px;
+    margin-left: 2px !important;
+    border-radius: 2px;
+    font-weight: bold;
+
+}
