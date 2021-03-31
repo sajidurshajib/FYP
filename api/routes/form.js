@@ -6,7 +6,7 @@ const auth = require('../middleware/auth')
 
 router.get('/all',formController.all)
 
-router.post('/',formController.newForm)
+router.post('/',auth,formController.newForm)
 
 
 module.exports = router

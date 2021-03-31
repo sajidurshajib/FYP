@@ -19,12 +19,14 @@ const all = (req,res,next)=>{
 //New profile
 const newForm = (req,res,next)=>{
 
+    //Point should be minus
+    
     const newForm = new Form({
-        author_foreign:req.body.author_foreign,
+        author_foreign:user.id,
+        author_name:user.name,
         title:req.body.title,
         description:req.body.description,
-        form:req.body.form,
-        access:req.body.access
+        form:req.body.form
     }) 
 
     newForm.save()

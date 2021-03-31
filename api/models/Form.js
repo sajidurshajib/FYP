@@ -7,6 +7,10 @@ const formSchema = new Schema({
         type: String,
         required:true
     },
+    author_name:{
+        type: String,
+        required:true
+    },
     title:{
         type:String,
         required: true
@@ -17,10 +21,6 @@ const formSchema = new Schema({
     },
     form:{
         type:Array,
-        required: true
-    },
-    access:{
-        type:String,
         required: true
     },
     date:{
