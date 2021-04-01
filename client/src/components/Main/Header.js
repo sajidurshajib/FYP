@@ -11,8 +11,8 @@ let Header = ()=>{
                         <h1>Built your own dataset</h1>
                         <p>Datavila is data sharing platform where you built own dataset.<br/>Lorem ipsum dolor sit ametLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s. </p>    
 
-                        <button>For developers</button>
-                        <button>For businesses</button>
+                        <button className="header-btn">For developers</button>
+                        <button className="header-btn">For businesses</button>
                     </Col>
                 </Row>
             </Container>

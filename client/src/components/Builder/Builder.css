@@ -21,7 +21,7 @@ code{
 
 /*This is for button*/
 
-button{
+.Builder button{
     background-color:#df4f37;
     color: #fff;
     border:none;
@@ -49,7 +49,7 @@ button:hover{
 }
 /*This is for label*/
 
-label{
+.Builder label{
     color: #333;
     display: inline-block;
     margin: 10px auto;

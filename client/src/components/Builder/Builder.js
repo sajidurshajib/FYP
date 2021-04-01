@@ -1,10 +1,12 @@
-import React, { Component, Fragment} from 'react';
+import React, { Component, Fragment, PropTypes} from 'react';
 import {Container, Row, Col, Form, Button} from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faUser, faCalendar} from '@fortawesome/free-solid-svg-icons';
+//import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+//import { faHome, faUser, faCalendar} from '@fortawesome/free-solid-svg-icons';
 import Menu from '../Menu/Menu.js';
 import './Builder.css'
-import CKEditor from "react-ckeditor-component";
+
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 class Builder extends Component{
 
@@ -12,6 +14,10 @@ class Builder extends Component{
         mainId:0,
         mainArray:[],
         submitArray:[],
+
+        title:'',
+        desc:'',
+
         //for toggle
         textField: true,
         textArea: true,
@@ -48,12 +54,12 @@ class Builder extends Component{
         jstLabel:'',
         cbText:'',
         cbName:'',
-        cbValue:'',
+        cbValue:''
         //Show data as array
-        showDataAsArray:false,
-        submitDataAsArray:false
+        //showDataAsArray:false
     }
-// MARK: state finished
+
+    
 
     toggle=(ch)=>{
         if(ch===1){
@@ -74,9 +80,6 @@ class Builder extends Component{
         else if(ch===6){
             this.setState({showDataAsArray:!this.state.showDataAsArray})
         }
-        else if(ch===7){
-            this.setState({submitDataAsArray:!this.state.submitDataAsArray})
-        }
     }
 
 
@@ -87,7 +90,7 @@ class Builder extends Component{
         this.setState({ [e.target.name]: e.target.checked })
     }
 
-    //MARK: togle and onChange
+
 
 
     tfSubmit= e =>{
@@ -293,47 +296,47 @@ class Builder extends Component{
 
 
 
-    submitOnchange=(e)=>{
-        this.state.submitArray.map((value,i)=>{
-            let key=i
-            if(key<=0){
-                let arr = this.state.submitArray
-                arr[e.target.id]={[e.target.name]:e.target.value}
-                this.setState({submitArray:arr})
+    // submitOnchange=(e)=>{
+    //     this.state.submitArray.map((value,i)=>{
+    //         let key=i
+    //         if(key<=0){
+    //             let arr = this.state.submitArray
+    //             arr[e.target.id]={[e.target.name]:e.target.value}
+    //             this.setState({submitArray:arr})
                 
-                console.log(this.state.submitArray)
-            }
-            return 0
-        })
-    }
+    //             console.log(this.state.submitArray)
+    //         }
+    //         return 0
+    //     })
+    // }
 
-    submitOnradio=(e)=>{
-        this.state.submitArray.map((value,i)=>{
-            let key=i
-            if(key<=0){
-                let arr = this.state.submitArray
-                arr[e.target.getAttribute("as")]={[e.target.name]:e.target.value}
-                this.setState({submitArray:arr})
+    // submitOnradio=(e)=>{
+    //     this.state.submitArray.map((value,i)=>{
+    //         let key=i
+    //         if(key<=0){
+    //             let arr = this.state.submitArray
+    //             arr[e.target.getAttribute("as")]={[e.target.name]:e.target.value}
+    //             this.setState({submitArray:arr})
                 
-                console.log(this.state.submitArray)
-            }
-            return 0
-        })
-    }
+    //             console.log(this.state.submitArray)
+    //         }
+    //         return 0
+    //     })
+    // }
 
-    submitCheckbox=(e)=>{
-        this.state.submitArray.map((value,i)=>{
-            let key=i
-            if(key<=0){
-                let arr = this.state.submitArray
-                arr[e.target.id]={[e.target.name]:e.target.checked}
-                this.setState({submitArray:arr})
+    // submitCheckbox=(e)=>{
+    //     this.state.submitArray.map((value,i)=>{
+    //         let key=i
+    //         if(key<=0){
+    //             let arr = this.state.submitArray
+    //             arr[e.target.id]={[e.target.name]:e.target.checked}
+    //             this.setState({submitArray:arr})
                 
-                console.log(this.state.submitArray)
-            }
-            return 0
-        })
-    }
+    //             console.log(this.state.submitArray)
+    //         }
+    //         return 0
+    //     })
+    // }
 
 
     render(){
@@ -471,20 +474,21 @@ class Builder extends Component{
             return 0
         })
 
+        console.log(this.state.desc)
         return(
             <div className="Builder">
                 <Menu />
                 <Container>
                     <Row>
                         <Col md="12">
-
+                            <hr/>
                             <Form.Group>
-                                <Form.Control onChange={this.onChange} name="name" type="text" placeholder="Header" />
+                                <Form.Control onChange={this.onChange} name="title" type="text" placeholder="Title" />
                             </Form.Group>
 
-                            <div id="editor"></div>
-                            <CKEditor activeClass="editor" />
-                            {/* //content={this.state.content} onChange={this.updateContent}  */}
+                           <CKEditor 
+                            editor={ClassicEditor}
+                           />
 
                         </Col>
                     </Row>
@@ -608,23 +612,12 @@ class Builder extends Component{
                         </Col>
                         <Col md="7">
 
-                            {
-                                //MARK: last form
-                            }
-
-
                             <Form>
                                 <div id="dynamicForm">
                                     {DynamicFormItems}
                                 </div>
                             </Form>
-                            {/* For presentation */}
-                            {this.state.mainId!==0 ? (<button className="ShowData" onClick={(e)=>this.toggle(6)}>Show data</button>) : null}
-                            {this.state.showDataAsArray ? mainArrayShowInCode :null}
 
-                            {/* For presentation */}
-                            {this.state.mainId!==0 ? (<button className="ShowData" onClick={(e)=>this.toggle(7)}>Submit data</button>) : null}
-                            {this.state.submitDataAsArray ? submitArrayShowInCode :null}
                         </Col>
                     </Row>
                 </Container>
