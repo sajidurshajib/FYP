@@ -19,7 +19,11 @@ const formSchema = new Schema({
         type:String,
         required: true
     },
-    form:{
+    form_data:{
+        type:Array,
+        required: true
+    },
+    form_submit:{
         type:Array,
         required: true
     },

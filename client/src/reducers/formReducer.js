@@ -5,7 +5,6 @@ import {
 } from '../actions/types'
 
 const initialState={
-    formExist: false,
     formLoading: false,
     formData:[]
 }
@@ -15,7 +14,12 @@ export default function(state=initialState, action){
         case FORM_CREATE:
             return{
                 ...state,
-                formExist: true,
+                formLoading: false,
+                formData:action.payload
+            }
+        case FORM_WIPE:
+            return{
+                ...state,
                 formLoading: false,
                 formData:action.payload
             }

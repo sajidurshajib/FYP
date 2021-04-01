@@ -1,14 +1,21 @@
-import React, { Component, Fragment, PropTypes} from 'react';
+import React, { Component, Fragment} from 'react';
+import {connect} from 'react-redux';
 import {Container, Row, Col, Form, Button} from 'react-bootstrap';
-//import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-//import { faHome, faUser, faCalendar} from '@fortawesome/free-solid-svg-icons';
 import Menu from '../Menu/Menu.js';
 import './Builder.css'
 
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import PropTypes from 'prop-types'
+import store from '../../store'
+import {newForm} from '../../actions/formAction'
 
 class Builder extends Component{
+
+    static propTypes={
+        auth: PropTypes.object.isRequired,
+        newForm: PropTypes.func.isRequired,
+    }
 
     state={
         mainId:0,
@@ -59,6 +66,20 @@ class Builder extends Component{
         //showDataAsArray:false
     }
 
+    newFormCreate= e =>{
+        e.preventDefault()
+
+        const {title,desc,mainArray,submitArray} = this.state
+
+        const newForm = {
+            title:title,
+            description:desc,
+            form_data:mainArray,
+            form_submit:submitArray}
+
+        this.props.newForm(newForm)
+
+    }
     
 
     toggle=(ch)=>{
@@ -77,9 +98,9 @@ class Builder extends Component{
         else if(ch===5){
             this.setState({checkBox:!this.state.checkBox})
         }
-        else if(ch===6){
-            this.setState({showDataAsArray:!this.state.showDataAsArray})
-        }
+        // else if(ch===6){
+        //     this.setState({showDataAsArray:!this.state.showDataAsArray})
+        // }
     }
 
 
@@ -89,7 +110,12 @@ class Builder extends Component{
     onChecked = e =>{
         this.setState({ [e.target.name]: e.target.checked })
     }
-
+    ckOnChange = (event, editor) =>{
+        let data = editor.getData()
+        this.setState({
+            desc: data
+        })
+    }
 
 
 
@@ -488,6 +514,7 @@ class Builder extends Component{
 
                            <CKEditor 
                             editor={ClassicEditor}
+                            onChange={this.ckOnChange}
                            />
 
                         </Col>
@@ -618,6 +645,8 @@ class Builder extends Component{
                                 </div>
                             </Form>
 
+                            {this.state.mainId!==0 ? (<button onClick={this.newFormCreate}>Proceed</button>) : null}
+
                         </Col>
                     </Row>
                 </Container>
@@ -626,4 +655,8 @@ class Builder extends Component{
     }
 }
 
-export default Builder;
+const mapStateProps = state =>({
+    auth: state.auth
+})
+
+export default connect(mapStateProps,{newForm})(Builder);

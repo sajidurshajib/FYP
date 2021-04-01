@@ -20,13 +20,14 @@ const all = (req,res,next)=>{
 const newForm = (req,res,next)=>{
 
     //Point should be minus
-    
+    console.log('Hello')
     const newForm = new Form({
-        author_foreign:user.id,
-        author_name:user.name,
+        author_foreign:req.user.id,
+        author_name:req.user.name,
         title:req.body.title,
         description:req.body.description,
-        form:req.body.form
+        form_data:req.body.form_data,
+        form_submit:req.body.form_submit
     }) 
 
     newForm.save()
@@ -36,6 +37,7 @@ const newForm = (req,res,next)=>{
             })
         })
         .catch(err=>{
+            console.log('meo')
             res.status(400).json({msg:err})
         })
 }
