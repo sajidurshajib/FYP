@@ -19,17 +19,22 @@ const all = (req,res,next)=>{
 //New profile
 const newForm = (req,res,next)=>{
 
+    //just find username
+
+    User.findById(req.user.id)
+        .then(user=>{
+            //userName = JSON.stringify(user.name)
+        
+
     //Point should be minus
-    console.log('Hello')
     const newForm = new Form({
         author_foreign:req.user.id,
-        author_name:req.user.name,
+        author_name:user.name,
         title:req.body.title,
         description:req.body.description,
         form_data:req.body.form_data,
         form_submit:req.body.form_submit
     }) 
-
     newForm.save()
         .then(data=>{
             res.json({
@@ -37,9 +42,11 @@ const newForm = (req,res,next)=>{
             })
         })
         .catch(err=>{
-            console.log('meo')
             res.status(400).json({msg:err})
         })
+
+        //ew
+    })
 }
 
 

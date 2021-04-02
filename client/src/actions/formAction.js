@@ -17,6 +17,7 @@ export const newForm=({title,description,form_data, form_submit})=>(dispatch,get
             payload: res.data
         }))
         .catch(err=>{
+            console.log(err)
             if(err.status===404){
                 dispatch(returnErrors(err.response.data, err.response.status, FORM_WIPE))
             }
