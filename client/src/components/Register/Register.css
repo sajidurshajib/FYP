@@ -41,6 +41,6 @@ button:focus{
     padding: 5px 25px 5px 25px;
 }
 
-.registerRight button:hover{
+.registerRight button:hover, .registerRight button:active{
     background-color: orangered;
 }

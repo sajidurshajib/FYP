@@ -46,6 +46,6 @@ button:focus{
     padding: 5px 25px 5px 25px;
 }
 
-.loginRight button:hover{
+.loginRight button:hover, .loginRight button:active{
     background-color: orangered;
 }
