@@ -19,6 +19,7 @@ export const PROFILE_NEW = 'PROFILE_NEW'
 export const PROFILE_UPDATE = 'PROFILE_UPDATE'
 export const PROFILE_WIPE = 'PROFILE_WIPE'
 
+export const FORM_LOADING = 'FORM_LOADING'
 export const FORM_CREATE = 'FORM_CREATE'
 export const FORM_SHOW = 'FORM_SHOW'
 export const FORM_WIPE = 'FORM_WIPE'

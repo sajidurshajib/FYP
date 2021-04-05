@@ -50,13 +50,31 @@ const newForm = (req,res,next)=>{
                     })
                 })
                 .catch(err=>{
-                    res.status(400).json({msg:err})
+                    return res.status(400).json({msg:err})
                 })
 
-            //ew
+            //User
         })
 
-    //profile
+    //Profile
+        //minus point
+        let p = data[0].point - 50;
+        let updateProfile = {
+            point:p
+        }
+        Profile.findOneAndUpdate({user_foreign:req.user.id},updateProfile, {new:true})
+        .then(data => {
+            Profile.findById(data._id)
+                .then(newData => {
+                    res.json({
+                        profile:newData
+                    })
+                })
+        })
+        .catch(err=>{
+            return res.status(400).json({msg:err})
+        })
+
     })
 }
 

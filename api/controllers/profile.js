@@ -92,7 +92,6 @@ const editProfile = (req,res,next)=>{
 
     Profile.findOneAndUpdate({user_foreign:id},updateProfile, {new:true})
         .then(data => {
-            console.log(data)
             Profile.findById(data._id)
                 .then(newData => {
                     res.json({
