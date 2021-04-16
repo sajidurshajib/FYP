@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {Container, Row, Col, Form} from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faUser, faCalendar} from '@fortawesome/free-solid-svg-icons';
+import renderHTML from 'react-render-html';
 import Menu from '../Menu/Menu.js';
 import './Home.css';
 import JSONDATA from "./MOCK_DATA.json"
@@ -31,15 +32,14 @@ class Home extends Component{
         this.setState({[e.target.name]: e.target.value})
     }
 
-    async hasData(){
-        if(Object.keys(this.props.formAll).length!=0){
-            await this.setState({loading:false})
-        }
-    }
-
 
     render(){
         const {formAll, formLoading} = this.props.form
+        if(Object.keys(formAll)!=""){
+            console.log(formAll)
+        }
+        
+        
         return(
             <div className="Home">
                 <Menu/>
@@ -67,8 +67,8 @@ class Home extends Component{
                 </div>   
                 <div className="homeData">
                     <Container>
-                        {
-                        JSONDATA.filter((val)=>{
+                        {Object.keys(formAll)!="" ?
+                        formAll.form.filter((val)=>{
                             if(this.state.search==""){
                                 return val;
                             }else if(val.title.toLocaleLowerCase().includes(this.state.search.toLowerCase())){
@@ -81,17 +81,17 @@ class Home extends Component{
                                         <Col md="2"></Col>
                                         <Col md="8">
                                             <div className="everyWrapper">
-                                                <h3><a href="#">{val.title}</a></h3>
+                                                <h3><a href={`form/${val._id}`}>{val.title}</a></h3>
                                                 <p className="user"><FontAwesomeIcon icon={faUser} /> <a href="#">{val.author_name}</a></p>
                                                 <p className="date"><FontAwesomeIcon icon={faCalendar} /> {val.date}</p>
-                                                <p className="detail">{val.description}</p>
+                                                <div className="detail">{renderHTML(val.description)}</div>
                                             </div>
                                         </Col>
                                     </Row>
                                 </div>
                             );
                         })
-                        }
+                        :<p>Loading...</p>}
                     </Container>
                 </div>
             </div>

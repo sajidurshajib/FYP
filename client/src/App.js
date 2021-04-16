@@ -11,6 +11,7 @@ import Login from './components/Login/Login.js';
 import Register from './components/Register/Register.js';
 import Profile from './components/Profile/Profile.js';
 import Builder from './components/Builder/Builder.js';
+import Form from './components/Form/Form.js';
 
 import {loadUser} from './actions/authAction'
 
@@ -32,6 +33,7 @@ class App extends Component{
               <Route path='/register' component={Register}/>
               <Route path='/profile' component={Profile}/>
               <Route path='/builder' component={Builder}/>
+              <Route path='/form/:id' component={Form}/>
             </Switch>
           </Router>
         </div>
