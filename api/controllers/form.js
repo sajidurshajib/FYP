@@ -17,6 +17,23 @@ const all = (req,res,next)=>{
         })
 }
 
+
+const singleForm = (req, res, next)=>{
+    let id = {_id:req.body.id}
+    console.log(id)
+    Form.find(id)
+        .then(data => {
+            //if(data.length==0) return res.status(400).json({msg:'No data found'})
+            res.json({
+                form: data
+            })
+        })
+        .catch(err=>res.status(400).json({msg:err}))
+}
+
+
+
+
 //New profile
 const newForm = (req,res,next)=>{
 
@@ -81,5 +98,6 @@ const newForm = (req,res,next)=>{
 
 module.exports = {
     all,
+    singleForm,
     newForm
 }

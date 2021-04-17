@@ -28,6 +28,39 @@ export const loadForm=()=>async (dispatch)=>{
 
 
 
+export const singleForm=(id)=>(dispatch)=>{
+    dispatch({type:FORM_LOADING})
+
+    const config = {
+        headers:{
+            'Content-Type':'application/json'
+        }
+    }
+
+
+    const body = JSON.stringify({id})
+
+    
+    
+    axios.post('/api/form/single',body,config)
+        .then(res=>dispatch({
+            type: FORM_SHOW,
+            payload: res.data
+        }))
+        .catch(err=>{
+            dispatch(returnErrors(err.response.data, err.response.status, FORM_WIPE))
+            dispatch({
+                type:FORM_WIPE
+            })
+        })
+        
+}
+
+
+
+
+
+
 export const newForm=({title,description,form_data, form_submit})=>(dispatch,getState)=>{
 
     const body = JSON.stringify({title,description,form_data, form_submit})
@@ -38,10 +71,6 @@ export const newForm=({title,description,form_data, form_submit})=>(dispatch,get
             payload: res.data
         }))
         .catch(err=>{
-            console.log(err)
-            // if(err.status===404){
-            //     dispatch(returnErrors(err.response.data, err.response.status, FORM_WIPE))
-            // }
             dispatch(returnErrors(err.response.data, err.response.status, FORM_WIPE))
             dispatch({
                 type:FORM_WIPE

@@ -6,6 +6,8 @@ const auth = require('../middleware/auth')
 
 router.get('/all',formController.all)
 
+router.post('/single',formController.singleForm)
+
 router.post('/',auth,formController.newForm)
 
 

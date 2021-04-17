@@ -312,59 +312,6 @@ class Builder extends Component{
     }
 
 
-
-    //==============================
-    //
-    //MARK: submit btn and final submit
-    //
-    //==============================
-
-
-
-
-    // submitOnchange=(e)=>{
-    //     this.state.submitArray.map((value,i)=>{
-    //         let key=i
-    //         if(key<=0){
-    //             let arr = this.state.submitArray
-    //             arr[e.target.id]={[e.target.name]:e.target.value}
-    //             this.setState({submitArray:arr})
-                
-    //             console.log(this.state.submitArray)
-    //         }
-    //         return 0
-    //     })
-    // }
-
-    // submitOnradio=(e)=>{
-    //     this.state.submitArray.map((value,i)=>{
-    //         let key=i
-    //         if(key<=0){
-    //             let arr = this.state.submitArray
-    //             arr[e.target.getAttribute("as")]={[e.target.name]:e.target.value}
-    //             this.setState({submitArray:arr})
-                
-    //             console.log(this.state.submitArray)
-    //         }
-    //         return 0
-    //     })
-    // }
-
-    // submitCheckbox=(e)=>{
-    //     this.state.submitArray.map((value,i)=>{
-    //         let key=i
-    //         if(key<=0){
-    //             let arr = this.state.submitArray
-    //             arr[e.target.id]={[e.target.name]:e.target.checked}
-    //             this.setState({submitArray:arr})
-                
-    //             console.log(this.state.submitArray)
-    //         }
-    //         return 0
-    //     })
-    // }
-
-
     render(){
         const mainArrayShowInCode=[]
         this.state.mainArray.map((value,i)=>{

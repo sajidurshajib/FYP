@@ -21,7 +21,7 @@ code{
 
 /*This is for button*/
 
-.Builder button{
+.Form button{
     background-color:#df4f37;
     color: #fff;
     border:none;
@@ -32,11 +32,11 @@ code{
     transition: 200ms;
     outline: none;
 }
-.Builder button:focus{
+.Form button:focus{
     border: none !important;
     outline: none !important;
 }
-.Builder button:hover{
+.Form button:hover{
     background-color: #ff5438;
 }
 

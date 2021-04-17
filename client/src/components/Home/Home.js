@@ -82,7 +82,7 @@ class Home extends Component{
                                         <Col md="2"></Col>
                                         <Col md="8">
                                             <div className="everyWrapper">
-                                                <h3><a href={`form/${val._id}`}>{val.title}</a></h3>
+                                                <h3><a href={`formview/${val._id}`}>{val.title}</a></h3>
                                                 <p className="user"><FontAwesomeIcon icon={faUser} /> <a href="#">{val.author_name}</a></p>
                                                 <p className="date"><FontAwesomeIcon icon={faCalendar} /> {val.date}</p>
                                                 <div className="detail">{renderHTML(val.description)}</div>
