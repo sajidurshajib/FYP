@@ -6,6 +6,7 @@ import { faHome, faUser, faCalendar} from '@fortawesome/free-solid-svg-icons';
 import renderHTML from 'react-render-html';
 import Menu from '../Menu/Menu.js';
 import './Home.css';
+import LoadingGif  from '../../assets/img/loading.gif'
 import JSONDATA from "./MOCK_DATA.json"
 
 
@@ -35,7 +36,7 @@ class Home extends Component{
 
     render(){
         const {formAll, formLoading} = this.props.form
-        if(Object.keys(formAll)!=""){
+        if(Object.keys(formAll)==""){
             console.log(formAll)
         }
         
@@ -91,7 +92,9 @@ class Home extends Component{
                                 </div>
                             );
                         })
-                        :<p>Loading...</p>}
+                        :(<Fragment>
+                            <img style={{margin:"0 auto",display:"block", width:"50%"}} src={LoadingGif} />
+                        </Fragment>)}
                     </Container>
                 </div>
             </div>
