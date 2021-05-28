@@ -41,7 +41,6 @@ const newForm = (req,res,next)=>{
 
     Profile.find({user_foreign:req.user.id})
         .then(data=>{
-            console.log(data[0].point)
             if(data[0].point<50) return res.status(400).json({msg:'You haven\'t enough point'})
             
 
