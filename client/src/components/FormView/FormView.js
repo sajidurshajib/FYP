@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types'
 import Subview from './Subview/Subview'
+import Menu from '../Menu/Menu'
 
 import './FormView.css'
 
@@ -34,16 +35,13 @@ class FormView extends Component{
 
 
     render(){
-        // console.log(this.props.form.formAll)
-        console.log(this.state.data)
-        
         return (
-            <div className="Form">
+            <div className="Formview">
+                <Menu />
                 {
                     Object.keys(this.props.form.formAll)!='' ?
                     <Subview data={this.props.form.formAll.form[0]} />:null
                 }
-                <p>{this.state.formId}</p>
             </div>
         )
     }

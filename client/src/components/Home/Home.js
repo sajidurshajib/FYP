@@ -7,7 +7,6 @@ import renderHTML from 'react-render-html';
 import Menu from '../Menu/Menu.js';
 import './Home.css';
 import LoadingGif  from '../../assets/img/loading.gif'
-import JSONDATA from "./MOCK_DATA.json"
 
 
 import PropTypes from 'prop-types'
@@ -35,7 +34,7 @@ class Home extends Component{
 
 
     render(){
-        const {formAll, formLoading} = this.props.form
+        const {formAll} = this.props.form
         if(Object.keys(formAll)==""){
             console.log(formAll)
         }
