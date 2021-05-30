@@ -26,6 +26,10 @@ export const loadForm=()=>async (dispatch)=>{
 }
 
 
+export const formDataWipe =()=>async (dispatch)=>{
+    dispatch({type:FORM_WIPE})
+}
+
 
 
 export const singleForm=(id)=>(dispatch)=>{

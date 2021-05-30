@@ -34,7 +34,7 @@ const newProfile = (req,res,next)=>{
 
     const newProfile = new Profile({
         user_foreign:req.user.id,
-        point:50,
+        point:1000,
         image:req.body.image,
         occupation:req.body.occupation,
         position:req.body.position,

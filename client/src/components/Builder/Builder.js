@@ -8,13 +8,14 @@ import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import PropTypes from 'prop-types'
 import store from '../../store'
-import {newForm} from '../../actions/formAction'
+import {newForm, formDataWipe} from '../../actions/formAction'
 
 class Builder extends Component{
 
     static propTypes={
         auth: PropTypes.object.isRequired,
         newForm: PropTypes.func.isRequired,
+        formDataWipe:PropTypes.func.isRequired
     }
 
     state={
@@ -78,6 +79,17 @@ class Builder extends Component{
             form_submit:submitArray}
 
         this.props.newForm(newForm)
+
+    }
+
+    formDataWipe=e=>{
+        e.preventDefault()
+
+        this.props.formDataWipe()
+
+        this.setState({mainId:0})
+        this.setState({mainArray:[]})
+        this.setState({submitArray:[]})
 
     }
     
@@ -447,7 +459,7 @@ class Builder extends Component{
             return 0
         })
 
-        console.log(this.state.desc)
+        console.log(this.props.form.formData)
         return(
             <div className="Builder">
                 <Menu />
@@ -588,11 +600,12 @@ class Builder extends Component{
 
                             <Form>
                                 <div id="dynamicForm">
-                                    {DynamicFormItems}
+                                    {Object.keys(this.props.form.formData).length===0 ? 
+                                    DynamicFormItems: <button onClick={this.formDataWipe}>Form created || Click here for another form</button>}
                                 </div>
                             </Form>
 
-                            {this.state.mainId!==0 ? (<button onClick={this.newFormCreate}>Proceed</button>) : null}
+                            {this.state.mainId!==0 && Object.keys(this.props.form.formData).length===0 ? (<button onClick={this.newFormCreate}>Proceed</button>) : null}
 
                         </Col>
                     </Row>
@@ -603,7 +616,8 @@ class Builder extends Component{
 }
 
 const mapStateProps = state =>({
-    auth: state.auth
+    auth: state.auth,
+    form: state.form
 })
 
-export default connect(mapStateProps,{newForm})(Builder);
+export default connect(mapStateProps,{newForm, formDataWipe})(Builder);

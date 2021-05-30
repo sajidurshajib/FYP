@@ -7,7 +7,7 @@ import {
 
 const initialState={
     formLoading: false,
-    formData:[],
+    formData:{},
     formAll:{}
 }
 
@@ -33,7 +33,7 @@ export default function(state=initialState, action){
             return{
                 ...state,
                 formLoading: false,
-                formData:action.payload
+                formData:{}
             }
         default:
             return state

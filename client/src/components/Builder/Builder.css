@@ -27,7 +27,7 @@ code{
     border:none;
     border-radius: 2px;
     display: block;
-    margin:10px !important;
+    margin-top: 10px;
     padding: 5px 10px;
     transition: 200ms;
     outline: none;
@@ -144,8 +144,8 @@ textarea:focus{
 
 /* those css user for other dropdown  */
 .dropAddRemove{
-    display:inline-block;
-    width: 40%;
+    display:inline-block !important;
+    width: 40% !important;
     margin: 5px 15px 5px 10px!important;
     background-color: #c62828;
 }

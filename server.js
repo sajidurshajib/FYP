@@ -1,6 +1,6 @@
 const express = require('express')
 const morgan = require('morgan')
-const bodyParser = require('body-parser')
+// const bodyParser = require('body-parser')
 const cors = require('cors')
 const mongoose = require('mongoose')
 
@@ -35,19 +35,20 @@ const app = express()
 app.use(morgan('dev'))
 app.use(cors())
 
-app.use(bodyParser.urlencoded({extended:false}))
-app.use(bodyParser.json())
+app.use(express.urlencoded({extended:false}))
+app.use(express.json())
 
 
 //Routes import
 const userRoute = require('./api/routes/user')
 const userProfile = require('./api/routes/profile')
 const dynamicForm = require('./api/routes/form')
+const dataRoute = request('./api/routes/data')
 //Route middleware
 app.use('/api/user', userRoute)
 app.use('/api/profile', userProfile)
 app.use('/api/form', dynamicForm)
-
+app.use('/api/data', dataRoute)
 
 // Main route
 app.get('/',(req,res,next)=>{

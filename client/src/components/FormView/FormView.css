@@ -49,7 +49,7 @@ code{
 }
 /*This is for label*/
 
-.Builder label{
+.Form label{
     color: #333;
     display: inline-block;
     margin: 10px auto;
