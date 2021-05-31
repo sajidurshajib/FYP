@@ -24,3 +24,5 @@ export const FORM_CREATE = 'FORM_CREATE'
 export const FORM_SHOW = 'FORM_SHOW'
 export const FORM_WIPE = 'FORM_WIPE'
 
+export const DATA_CREATED = 'DATA_CREATED'
+export const DATA_WIPE = 'DATA_WIPE'

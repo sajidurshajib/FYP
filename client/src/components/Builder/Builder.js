@@ -1,6 +1,6 @@
 import React, { Component, Fragment} from 'react';
 import {connect} from 'react-redux';
-import {Container, Row, Col, Form, Button} from 'react-bootstrap';
+import {Container, Row, Col, Form} from 'react-bootstrap';
 import Menu from '../Menu/Menu.js';
 import './Builder.css'
 

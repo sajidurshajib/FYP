@@ -4,6 +4,8 @@ const dataController = require('../controllers/data')
 //Auth import 
 const auth = require('../middleware/auth')
 
-router.get('/set',dataController.set)
+router.post('/set',auth,dataController.set)
+
+router.get('/find/:id',dataController.find)
 
 module.exports = router

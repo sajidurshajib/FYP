@@ -1,4 +1,6 @@
 import React, {Component, Fragment} from 'react'
+import {connect} from 'react-redux';
+import PropTypes from 'prop-types'
 import {
     Container,
     Row,
@@ -7,51 +9,25 @@ import {
 } from 'react-bootstrap'
 import './Subview.css'
 import renderHTML from 'react-render-html';
+import {newData, dataWipe} from '../../../actions/dataAction'
 
 class Subview extends Component{
 
+    static propTypes={
+        auth: PropTypes.object.isRequired,
+        newData: PropTypes.func.isRequired,
+        dataWipe:PropTypes.func.isRequired
+    }
+
     state={
+        formId:'',
         mainId:0,
+        
         mainArray:[],
         submitArray:[],
-        //for toggle
-        // textField: true,
-        // textArea: true,
-        // dropDown: true,
-        // radioBtn: true,
-        // checkBox: true,
-        //dropdown counter
+
         radioBtnCount: 0,
         checkBoxCount: 0,
-
-        //text field state
-        // tfLabel:'',
-        // tfName:'',
-        // tfPlaceholder:'',
-        // tfRequired:false,
-        //text area state
-        // taLabel:'',
-        // taName:'',
-        // taPlaceholder:'',
-        // taRequired:false,
-        // //drop down state
-        // ddLabel:'',
-        // ddName:'',
-        // ddData:[],
-        // ddTempText:'',
-        // ddTempValue:'',
-        // //radio button state
-        // rbLabel:'',
-        // rbName:'',
-        // rbData:[],
-        // rbTempText:'',
-        // rbTempValue:'',
-        // //checkbox state
-        // jstLabel:'',
-        // cbText:'',
-        // cbName:'',
-        // cbValue:'',
-        //Show data as array
         showDataAsArray:false,
         submitDataAsArray:false
     }
@@ -59,14 +35,79 @@ class Subview extends Component{
 
     static getDerivedStateFromProps(props, state){
         return {
-            mainArray: props.data.form_data,
-            submitArray: props.data.form_submit
+            mainArray: props.formdata.form_data,
+            submitArray: props.formdata.form_submit,
+            formId:props.formId
         }
     }
 
+    dataSubmit= e =>{
+        e.preventDefault()
+
+        const {formId, submitArray} = this.state
+
+        const nd = {
+            form_foreign:formId,
+            data:submitArray
+        }
+        this.props.newData(nd)
+    }
+
+
+
+
+
+    submitOnchange=(e)=>{
+        this.state.submitArray.map((value,i)=>{
+            let key=i
+            if(key<=0){
+                let arr = this.state.submitArray
+                arr[e.target.id]={[e.target.name]:e.target.value}
+                this.setState({submitArray:arr})
+
+                console.log(this.state.submitArray)
+            }
+            return 0
+        })
+    }
+
+    submitOnradio=(e)=>{
+        this.state.submitArray.map((value,i)=>{
+            let key=i
+            if(key<=0){
+                let arr = this.state.submitArray
+                arr[e.target.getAttribute("as")]={[e.target.name]:e.target.value}
+                this.setState({submitArray:arr})
+
+                console.log(this.state.submitArray)
+            }
+            return 0
+        })
+    }
+
+    submitCheckbox=(e)=>{
+        this.state.submitArray.map((value,i)=>{
+            let key=i
+            if(key<=0){
+                let arr = this.state.submitArray
+                arr[e.target.id]={[e.target.name]:e.target.checked}
+                this.setState({submitArray:arr})
+
+                console.log(this.state.submitArray)
+            }
+            return 0
+        })
+    }
+
+
+
+
+
+    
 
     render(){
-        console.log(this.props.data)
+        console.log(this.state.formId)
+        console.log(this.props?.data)
 
         const DynamicFormItems = []
         this.state.mainArray.map((value,i)=>{
@@ -163,16 +204,16 @@ class Subview extends Component{
                     <Row>
                         {/* <Col md='2'></Col> */}
                         <Col md='12'>
-                        <h2 className="heading">{this.props.data.title}</h2>
-                        <h6>Author name: {this.props.data.author_name}</h6>
-                        <code>{this.props.data.date}</code>
-                        {renderHTML(this.props.data.description)}
+                        <h2 className="heading">{this.props.formdata.title}</h2>
+                        <h6>Author name: {this.props.formdata.author_name}</h6>
+                        <code>{this.props.formdata.date}</code>
+                        {renderHTML(this.props.formdata.description)}
                             <Form>
                                 <div id="dynamicForm">
                                     {DynamicFormItems}
                                 </div>
                             </Form>
-                            <button className='subBtn'>Submit</button>
+                            <button onClick={this.dataSubmit} className='subBtn'>Submit</button>
                         </Col>
                     </Row>    
                 </Container>
@@ -181,4 +222,11 @@ class Subview extends Component{
     }
 }
 
-export default Subview
+
+
+const mapStateProps = state =>({
+    auth: state.auth,
+    data: state.data
+})
+
+export default connect(mapStateProps,{newData, dataWipe})(Subview)

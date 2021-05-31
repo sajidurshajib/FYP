@@ -40,7 +40,7 @@ class FormView extends Component{
                 <Menu />
                 {
                     Object.keys(this.props.form.formAll)!='' ?
-                    <Subview data={this.props.form.formAll.form[0]} />:null
+                    <Subview formdata={this.props.form.formAll.form[0]} formId={this.props.match.params.id} />:null
                 }
             </div>
         )

@@ -43,7 +43,8 @@ app.use(express.json())
 const userRoute = require('./api/routes/user')
 const userProfile = require('./api/routes/profile')
 const dynamicForm = require('./api/routes/form')
-const dataRoute = request('./api/routes/data')
+const dataRoute = require('./api/routes/data')
+
 //Route middleware
 app.use('/api/user', userRoute)
 app.use('/api/profile', userProfile)
