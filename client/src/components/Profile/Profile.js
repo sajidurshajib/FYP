@@ -13,6 +13,8 @@ import PropTypes from 'prop-types'
 import store from '../../store'
 import {loadProfile, newProfile, updateProfile} from '../../actions/profileAction' 
 
+import Pds from './PersonalDataSet/PersonalDataSet'
+
 
 
 class Profile extends Component{
@@ -86,12 +88,12 @@ class Profile extends Component{
     }
 
     render(){
-        const {isAuthenticated,user}=this.props.auth
+        const {isAuthenticated,token,user}=this.props.auth
         const {profileExist, profileData, profileLoading}=this.props.profile
 
         return(
             <div className="Profile">
-                {isAuthenticated? null : <Redirect to='/'/>}
+                {token!==null || isAuthenticated ? null : <Redirect to='/'/>}
                 <Menu />
                 <div className="profile-header">
                     <Container>
@@ -289,6 +291,8 @@ class Profile extends Component{
                         </Fragment > :null}
 
                 </Container>
+                <Pds />
+                
             </div>
         );
     }

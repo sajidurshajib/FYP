@@ -34,12 +34,11 @@ class Menu extends Component{
                         <Link to='/'>Data<FontAwesomeIcon icon={faDatabase} />Vila.com</Link>
                     </span>
                     <ul className="MenuUl">
-                        <li><Link to='/home'><FontAwesomeIcon icon={faHome} /> Home</Link></li>
-                        <li><Link to='/builder'><FontAwesomeIcon icon={faPlusSquare} /> Builder</Link></li>
-                        
-                        
+        
                         {isAuthenticated ? 
                         <Fragment>
+                            <li><Link to='/home'><FontAwesomeIcon icon={faHome} /> Home</Link></li>
+                            <li><Link to='/builder'><FontAwesomeIcon icon={faPlusSquare} /> Builder</Link></li>
                             <li><Link to='/profile'><FontAwesomeIcon icon={faUser} /> {user.name}</Link></li>
                             <li><Link onClick={this.logout}><FontAwesomeIcon icon={faSignOutAlt} /> Logout</Link></li>
                         </Fragment>

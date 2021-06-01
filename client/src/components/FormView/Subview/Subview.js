@@ -1,6 +1,7 @@
 import React, {Component, Fragment} from 'react'
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types'
+import {CopyToClipboard} from 'react-copy-to-clipboard';
 import {
     Container,
     Row,
@@ -29,7 +30,9 @@ class Subview extends Component{
         radioBtnCount: 0,
         checkBoxCount: 0,
         showDataAsArray:false,
-        submitDataAsArray:false
+        submitDataAsArray:false,
+
+        copied:false
     }
 
 
@@ -206,6 +209,13 @@ class Subview extends Component{
                         <Col md='12'>
                         <h2 className="heading">{this.props.formdata.title}</h2>
                         <h6>Author name: {this.props.formdata.author_name}</h6>
+                        
+                        <CopyToClipboard text={`http://localhost:5000/api/data/find/${this.state.formId}`}
+                        onCopy={() => this.setState({copied: true})}>
+                        <p>api : <span className="api">http://localhost:5000/api/data/find/{this.state.formId}</span> {this.state.copied ? <span className="copied">copied</span> :null} </p>
+                        </CopyToClipboard>
+
+                        
                         <code>{this.props.formdata.date}</code>
                         {renderHTML(this.props.formdata.description)}
                             <Form>

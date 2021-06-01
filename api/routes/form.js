@@ -8,6 +8,8 @@ router.get('/all',formController.all)
 
 router.post('/single',formController.singleForm)
 
+router.get('/personal/:id',formController.personalForm)
+
 router.post('/',auth,formController.newForm)
 
 

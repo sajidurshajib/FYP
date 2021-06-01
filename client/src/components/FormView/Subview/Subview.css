@@ -266,3 +266,27 @@ select.form-control{
     font-weight: bold;
 
 }
+
+
+
+.api{
+    color: #df4f37;
+    cursor: pointer;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    transition: 300ms;
+}
+.api:hover{
+    color: brown;
+}
+
+.copied{
+    color: #fff;
+    background-color: #333;
+    font-size: 12px;
+    padding: 4px 7px;
+    border-radius: 2px;
+    position: relative;
+    top: -2px;
+    left: 10px;
+}

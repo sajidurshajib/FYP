@@ -54,8 +54,7 @@ button:focus{
     transition: 300ms;
 }
 .everyWrapper:hover{
-    transition-delay: 500ms;
-    height: 90%;
+    transform:scale(1.05);
 }
 
 .everyWrapper h3 a{
