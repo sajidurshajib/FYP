@@ -2,13 +2,15 @@ import {
     FORM_LOADING,
     FORM_CREATE,
     FORM_SHOW,
-    FORM_WIPE
+    FORM_WIPE,
+    FORM_PERSONAL
 } from '../actions/types'
 
 const initialState={
     formLoading: false,
     formData:{},
-    formAll:{}
+    formAll:{},
+    formPersonal:{}
 }
 
 export default function(state=initialState, action){
@@ -28,6 +30,11 @@ export default function(state=initialState, action){
                 ...state,
                 formLoading: false,
                 formAll:action.payload
+            }
+        case FORM_PERSONAL:
+            return{
+                ...state,
+                formPersonal:action.payload
             }
         case FORM_WIPE:
             return{

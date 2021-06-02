@@ -22,6 +22,7 @@ export const PROFILE_WIPE = 'PROFILE_WIPE'
 export const FORM_LOADING = 'FORM_LOADING'
 export const FORM_CREATE = 'FORM_CREATE'
 export const FORM_SHOW = 'FORM_SHOW'
+export const FORM_PERSONAL = 'FORM_PERSONAL'
 export const FORM_WIPE = 'FORM_WIPE'
 
 export const DATA_CREATED = 'DATA_CREATED'

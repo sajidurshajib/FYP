@@ -4,6 +4,7 @@ import {
     FORM_LOADING,
     FORM_CREATE,
     FORM_SHOW,
+    FORM_PERSONAL,
     FORM_WIPE
 } from './types'
 
@@ -82,6 +83,33 @@ export const newForm=({title,description,form_data, form_submit})=>(dispatch,get
         })
         
 }
+
+
+
+
+
+
+export const personalForm=()=>(dispatch,getState)=>{
+    console.log('personalForm action')
+
+    axios.post('/api/form/personal',{},tokenConfig(getState))
+        .then(res=>dispatch({
+            type: FORM_PERSONAL,
+            payload: res.data
+        }))
+        .catch(err=>{
+            dispatch(returnErrors(err.response.data, err.response.status, FORM_WIPE))
+            dispatch({
+                type:FORM_WIPE
+            })
+        })
+        
+}
+
+
+
+
+
 
 
 export const tokenConfig = getState =>{

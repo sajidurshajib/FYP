@@ -37,7 +37,9 @@ class Profile extends Component{
         email:'',
         twitter:'',
         linkedin:'',
-        github:''
+        github:'',
+
+        yourDataSet:false
 
     }
 
@@ -291,7 +293,9 @@ class Profile extends Component{
                         </Fragment > :null}
 
                 </Container>
+
                 <Pds />
+                
                 
             </div>
         );

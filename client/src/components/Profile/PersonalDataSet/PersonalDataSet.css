@@ -1,0 +1,14 @@
+.PersonalDataSet{
+    margin-top: 20px;
+}
+
+.wrapper{
+    border: 3px solid rgb(196, 196, 196);
+    margin-bottom: 20px;
+    padding: 10px;
+    transition: 300ms;
+}
+
+.wrapper:hover{
+    transform: scale(1.1);
+}

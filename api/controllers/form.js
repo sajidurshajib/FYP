@@ -35,7 +35,8 @@ const singleForm = (req, res, next)=>{
 
 
 const personalForm = (req, res, next)=>{
-    let id = {author_foreign:req.params.id}
+    let id = {author_foreign:req.user.id}
+    console.log(`api id : ${req.user.id}`)
     Form.find(id)
         .then(data => {
             //if(data.length==0) return res.status(400).json({msg:'No data found'})
