@@ -35,6 +35,10 @@ Edit a js file
 
 Commentout 14 number line and remove 13 number line's end comma. (Thosw things only for development purpose)
 
+**5. Start development server**
+
+`npm run dev`
+
 Your client UI run `localhost:3000`
 
 and your api `localhost:5000`
